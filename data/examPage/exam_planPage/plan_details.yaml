@@ -1,0 +1,14 @@
+goto_add_exam:
+  - by: xpath
+    locator: '//*[@class="we f-14 ml-10 ivu-btn ivu-btn-primary"]/span'
+    action: click
+
+get_plan_name:
+  - by: xpath
+    locator: '//*[@class="searchLine"]/div[1]/div'
+    action: text
+
+get_current_data_total:
+  - by: xpath
+    locator: '//*[@class="total"]'
+    action: text

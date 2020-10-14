@@ -1,0 +1,39 @@
+plan_name:
+  - by: xpath
+    locator: '//*[@class="ivu-input ivu-input-default"]'
+    action: clear
+  - by: xpath
+    locator: '//*[@class="ivu-input ivu-input-default"]'
+    action: send
+    value: ${plan_name}
+
+term:
+  - by: xpath
+    locator: '//*[@class="ivu-select-placeholder"]'
+    action: click
+  - by: xpath
+    locator: '//*[@class="ivu-select-item"]'
+    action: click
+
+upload_exists_plan_import:
+  - by: xpath
+    locator: '//*[@class="we f-14 ivu-btn ivu-btn-success"]/span/span'
+    action: click
+
+check_upload_result:
+  - by: xpath
+    locator: '//*[@class="ivu-form-item-error-tip"]'
+    action: ele_status
+
+download_result:
+  - by: xpath
+    locator: '//*[@class="we ml-10 f-14 ivu-btn ivu-btn-primary"]/span'
+    action: click
+
+goto_plan_details:
+  - by: xpath
+    locator: '//*[@class="we f-14 w-120 ivu-btn ivu-btn-primary"]/span/span'
+    action: wait_click
+  - by: xpath
+    locator: '//*[@class="we f-14 w-120 ivu-btn ivu-btn-primary"]/span/span'
+    action: click

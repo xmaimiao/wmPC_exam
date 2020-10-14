@@ -1,0 +1,4 @@
+goto_exam_plan:
+  - by: xpath
+    locator: '//*[@class="ivu-menu-item ivu-menu-item-active ivu-menu-item-selected"]/div/span[2]'
+    action: click

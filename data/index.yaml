@@ -1,0 +1,5 @@
+goto_application:
+  -
+    by: xpath
+    locator: '//*[@class="link-button head-button hv-bright"][last()]/i'
+    action: click

@@ -1,0 +1,25 @@
+goto_registration:
+  -
+    by: link text
+    locator: ${application_name}
+    action: click
+
+goto_classtimetable:
+  -
+    by: xpath
+    locator: '//*[contains(text(),"${application}")]'
+    action: wait_click
+  -
+    by: xpath
+    locator: '//*[contains(text(),"${application}")]'
+    action: click
+
+goto_exam:
+  -
+    by: xpath
+    locator: '//*[contains(text(),"${application}")]'
+    action: wait_click
+  -
+    by: xpath
+    locator: '//*[contains(text(),"${application}")]'
+    action: click

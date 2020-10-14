@@ -1,0 +1,8 @@
+add_exists_plan:
+  - by: xpath
+    locator: '//*[@class="title-bar"]/div/div/button/span/span'
+    action: click
+goto_plan_details:
+  - by: xpath
+    locator: '//*[contains(text(),"${plan_name}")]'
+    action: click
