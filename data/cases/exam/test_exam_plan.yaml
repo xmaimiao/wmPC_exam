@@ -3,21 +3,21 @@ setup_datas: {username: mai2,password: wemust@Better,application: 考試}
 #测试之前确保计划之间的冲突，最好删除其他考试计划
 test_check_upload_exists_plan:
 #1.同排考編號，班別重複
-  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel1.xls,expect: True}
-#2.同排考編號，班別不存在
-  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel2.xls,expect: True}
-#3.格式有误
-  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel3.xls,expect: True}
-#4.同排考编号，验证考试时间不相同，導入失敗
-  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel4.xls,expect: True}
-#5.同排考编号，验证考室是否存在，数据1存在、数据2不存在
-  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel5.xls,expect: True}
-#6.同排考编号，验证考室是否存在，数据1、数据2均不存在
-  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel6.xls,expect: True}
-#7.1同排考编号，验证考室是否冲突，与文件内考室冲突（同排考编号科目A数据2与科目B冲突）
-  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel7_1.xls,expect: True}
-#7.2同排考编号，验证考室是否冲突，与文件内考室冲突（同排考编号科目A数据1与科目B冲突）
-  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel7_2.xls,expect: True}
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel1.xls,expect: True}
+##2.同排考編號，班別不存在
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel2.xls,expect: True}
+##3.格式有误
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel3.xls,expect: True}
+##4.同排考编号，验证考试时间不相同，導入失敗
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel4.xls,expect: True}
+##5.同排考编号，验证考室是否存在，数据1存在、数据2不存在
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel5.xls,expect: True}
+##6.同排考编号，验证考室是否存在，数据1、数据2均不存在
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel6.xls,expect: True}
+##7.1同排考编号，验证考室是否冲突，与文件内考室冲突（同排考编号科目A数据2与科目B冲突）
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel7_1.xls,expect: True}
+##7.2同排考编号，验证考室是否冲突，与文件内考室冲突（同排考编号科目A数据1与科目B冲突）
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel7_2.xls,expect: True}
 ##7.3同排考编号，验证考室是否冲突，与文件内考室冲突（同排考编号科目A数据1，2与科目B冲突）
 #  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel7_3.xls,expect: True}
 ##8.同排考编号，验证考室是否冲突，与其他计划考试冲突 ,僅限dev環境
@@ -32,12 +32,6 @@ test_check_upload_exists_plan:
 #  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel12.xls,expect: True}
 ##13.不同排考编号，验证考室是否正确，与文件内考室冲突
 #  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel13.xls,expect: True}
-##14.同排考编号，验证导入成功正确显示，数据1、数据2均有考场
-#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel14.xls,expect: False}
-##15.同排考编号，验证导入成功正确显示，数据1无，数据2有
-#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel15.xls,expect: False}
-##16.同排考编号，验证导入成功正确显示，数据1、数据2均无考场
-#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel16.xls,expect: False}
 ##17.同排考编号，验证考室是否容量足够，数据1容量不足，dev环境适用，考场容量需要设置
 #  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel17.xls,expect: True}
 ##18.同排考编号，验证导考室是否容量足够，数据2容量不足，dev环境适用，考场容量需要设置
@@ -46,16 +40,22 @@ test_check_upload_exists_plan:
 #  - {username: mai2,password: wemust@Better,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel19.xls,expect: True}
 ###bug.26876不同排考編號，同一時間，同一考場，上傳成功了有誤
 #  - {username: mai2,password: wemust@Better,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel20.xls,expect: True}
+#23，验证考生冲突:文件内冲突，同考试时间、不同考场
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel23.xls,expect: True}
+
+##14.同排考编号，验证导入成功正确显示，数据1、数据2均有考场
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel14.xls,expect: False}
+##15.同排考编号，验证导入成功正确显示，数据1无，数据2有
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel15.xls,expect: False}
+##16.同排考编号，验证导入成功正确显示，数据1、数据2均无考场
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel16.xls,expect: False}
 ###bug.26832/26913同排考编号，验证监考员数量正确:考场均为空，监考员数量最大=8，可重叠
 #  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel21.xls,expect: False}
 ###bug.26832同排考编号，验证监考员数量正确:数据1考场为空，监考员数量最大=8，可重叠
 #  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel22.xls,expect: False}
-##23，验证考生冲突:文件内冲突，同考试时间、不同考场
-#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel23.xls,expect: False}
-###24.验证考生冲突:计划间冲突，同考试时间、不同考场
-#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel24.xls,expect: False}
-###24.临时测试
-  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel25.xls,expect: False}
+##27.bug26874 使用D01#D05的符號來支持D01至D05的輸入
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 1004計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel27.xls,expect: False}
+
 
 test_current_exam_total:
 #14.同排考编号，验证导入成功計劃詳情僅顯示1行，数据1、数据2均有考场
@@ -66,19 +66,30 @@ test_current_exam_total:
 #  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 1012計劃3,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel16.xls,expect: 3}
 
 test_check_add_plan_succeed:
-  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 1012計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel25.xls,expect: 1012計劃1}
+#1.bug26958 添加計劃16報錯
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 1004計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel16.xls,expect: 1004計劃1}
 
 test_add_exam_same_examCode_pre1:
 #1.同編號考試未開始，默認設置相同考試時間
   - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 1012計劃1,examCode: BL4014-01,course: BHM1257,classdata: ["DE3","DE1"], teacher_1: ["jchen",],
-      grade: 1,examtime: 10:00 - 12:00,expect: 保存成功}
+      roomCode: O304,invigilate_one: jchen,grade: 1,examtime: 10:00 - 12:00,expect: 保存成功}
 test_add_exam_same_examCode_pre2:
   - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 1012計劃1,examCode: BL4014-01,course: BHM1257,classdata: ["DE2"], teacher_1: ["jchen",],
       grade: 1,expect: 保存成功}
 
 test_add_exam_same_examCode_end1:
   - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 1012計劃1,examCode: BL4014-02,course: BBAE16110,classdata: ["E1"], teacher_1: ["jchen",],
-      grade: 1,examtime: 10:00 - 12:00,expect: 保存成功}
+      grade: 1,examtime: 8:00 - 9:00,expect: 保存成功}
 test_add_exam_same_examCode_end2:
-  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 1012計劃1,expect: 请更换排考编号}
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 1012計劃1,examCode: BL4014-02,expect: 請更換排考編號}
 
+test_add_exam_same_examCode_roomCode:
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1012計劃1,examCode: BL4014-01,course: EP01-02,classdata: [ "D03"], teacher_1: [ "jchen", ],
+      roomCode: O304,invigilate_one: jchen,grade: 1,expect: "考室 O304 在當前數據中已被佔用" }
+
+test_add_exam_same_examCode_update_examdate1:
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 1004計劃1,examCode: BL4014-03,course: PEF501,classdata: ["D01"], teacher_1: ["jchen",],
+      roomCode: O304,invigilate_one: jchen,grade: 1,examdate: 2020-10-15,examtime: 10:00 - 12:00,expect: 保存成功}
+test_add_exam_same_examCode_update_examdate2:
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 1004計劃1,examCode: BL4014-03,course: PEL101,classdata: ["D01"], teacher_1: ["jchen",],
+      examdate: 2020-10-16,examtime: 10:00 - 12:00,expect: 2}

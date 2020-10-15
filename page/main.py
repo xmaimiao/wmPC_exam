@@ -30,7 +30,7 @@ class Main(BasePage):
 
     def goto_exam_plan(self):
         '''
-        測試入口，打開考試
+        測試入口，打開考試計劃
         '''
         self.set_implicitly_wait(5)
         self.step(exampage_dir,"goto_exam_plan")

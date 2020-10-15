@@ -3,7 +3,6 @@ import logging
 from time import sleep
 
 import yaml
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.webdriver import WebDriver
@@ -57,8 +56,6 @@ class BasePage:
         if self._base_url != "":
             self._driver.get(self._base_url)
 
-    # 1.'//*[@class="quit-btn ivu-btn ivu-btn-default"]/span'  账号身份已过期“确定”元素
-    # 2. '//*[@name="submit"]'  点击“登录”按钮
     @handlie_blacklist
     def find(self,by,locator):
         logging.info(f"find：{locator}")
@@ -131,7 +128,7 @@ class BasePage:
         logging.info(f"find_ele_status：{locator}")
         try:
             self.find(by, locator)
-        except NoSuchElementException as e:
+        except Exception as e:
             # 发生了NoSuchElementException异常，说明页面中未找到该元素，返回False
             return False
         else:
@@ -217,5 +214,7 @@ class BasePage:
                     sleep(step["locator"])
                 if "action_click" == action:
                     self.action_click(step["by"], step["locator"])
+                if "eles" == action:
+                    return self.finds(step["by"], step["locator"])
 
 

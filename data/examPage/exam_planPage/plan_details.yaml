@@ -12,3 +12,8 @@ get_current_data_total:
   - by: xpath
     locator: '//*[@class="total"]'
     action: text
+
+get_same_examdate_courses:
+  - by: xpath
+    locator: '//*[contains(text(),"${examdate}")]'
+    action: len

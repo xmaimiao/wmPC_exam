@@ -70,16 +70,15 @@ add_teacher_1:
 #    locator: '//*[contains(text(),"${teacher_1}")]'
 #    action: click
 
-add_class:
+add_class_click_input:
   - by: xpath
     locator: '//*[@class="select-box"]/form/div/div[2]//span'
     action: click
-  - by:
-    locator: 2
-    action: sleep
+
+add_class:
   - by: xpath
-    locator: '//*[@class="select-box"]/form/div/div[2]//ul[2]/li[1]'
-    action: click
+    locator:  '//*[contains(text(),"${classdata}")]'
+    action: eles
 
 add_student_exam:
   - by: xpath
@@ -94,12 +93,9 @@ add_grade:
     value: ${grade}
 
 add_examdate:
-#  - by: xpath
-#    locator: '//*[@class="body"]/form/div[6]/div[1]//input'
-#    action: click
-  - by:
-    locator: 1
-    action: sleep
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[6]/div[1]//input'
+    action: click
   - by: xpath
     locator: '//*[@class="body"]/form/div[6]/div[1]//input'
     action: send
@@ -108,7 +104,16 @@ add_examdate:
 add_examdate_same_examCode:
   - by: xpath
     locator: '//*[@class="body"]/form/div[7]/div[1]//input'
+    action: move
+  - by: xpath
+    locator: 2
+    action: sleep
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[7]/div[1]//input/../span/i'
     action: click
+  - by: xpath
+    locator: 2
+    action: sleep
   - by: xpath
     locator: '//*[@class="body"]/form/div[7]/div[1]//input'
     action: send
@@ -134,24 +139,40 @@ add_roomCode:
     locator: '//*[@class="body"]/form/div[7]//input[@class="ivu-select-input"]'
     action: send
     value: ${roomCode}
+  - by:
+    locator: 1
+    action: sleep
   - by: xpath
-    locator: '//*[contains(text(),"${roomCode}")]'
-    action: wait_click
-  - by: xpath
-    locator: '//*[contains(text(),"${roomCode}")]'
-    action: click '//*[@class="body"]/form/div[8]/div[1]//input'
+    locator: '//*[@class="body"]/form/div[7]/div[1]//div[2]/ul[2]/li[1]'
+    action: click
 
-add_invigilate_noe:
+
+add_roomCode_same_examCode:
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[8]//input[@class="ivu-select-input"]'
+    action: click
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[8]//input[@class="ivu-select-input"]'
+    action: send
+    value: ${roomCode}
+  - by:
+    locator: 1
+    action: sleep
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[8]/div[1]//div[2]/ul[2]/li[1]'
+    action: click
+
+add_invigilate_one:
   - by: xpath
     locator: '//*[@class="body"]/form/div[8]/div[1]//input'
     action: click
   - by: xpath
     locator: '//*[@class="body"]/form/div[8]/div[1]//input'
     action: send
-    value: ${invigilate_noe}
-  - by: xpath
-    locator: '//*[@class="body"]/form/div[8]/div[1]//ul/li[1]'
-    action: wait_click
+    value: ${invigilate_one}
+  - by:
+    locator: 1
+    action: sleep
   - by: xpath
     locator: '//*[@class="body"]/form/div[8]/div[1]//ul/li[1]'
     action: click
@@ -201,6 +222,66 @@ add_invigilate_four:
     locator: '//*[@class="body"]/form/div[9]/div[2]//ul/li[1]'
     action: click
 
+add_invigilate_one_same_examCode:
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[8]/div[1]//input'
+    action: click
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[8]/div[1]//input'
+    action: send
+    value: ${invigilate_one}
+  - by:
+    locator: 1
+    action: sleep
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[8]/div[1]//ul/li[1]'
+    action: click
+
+add_invigilate_two_same_examCode:
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[8]/div[2]//input'
+    action: click
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[8]/div[2]//input'
+    action: send
+    value: ${invigilate_two}
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[8]/div[2]//ul/li[1]'
+    action: wait_click
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[8]/div[2]//ul/li[1]'
+    action: click
+
+add_invigilate_three_same_examCode:
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[9]/div[1]//input'
+    action: click
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[9]/div[1]//input'
+    action: send
+    value: ${invigilate_noe}
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[9]/div[1]//ul/li[1]'
+    action: wait_click
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[9]/div[1]//ul/li[1]'
+    action: click
+
+add_invigilate_four_same_examCode:
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[9]/div[2]//input'
+    action: click
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[9]/div[2]//input'
+    action: send
+    value: ${invigilate_four}
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[9]/div[2]//ul/li[1]'
+    action: wait_click
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[9]/div[2]//ul/li[1]'
+    action: click
+
 add_exam_ruletype_open_book:
   - by: xpath
     locator: '//*[@class="body"]/form/div[11]/div//label[1]//input'
@@ -223,11 +304,13 @@ click_save_same_examCode:
     action: action_click
 
 check_add_succeed:
-#  - by:
-#    locator: 1
-#    action: sleep
   - by: xpath
     locator: '//*[@class="f-24 mt-30"]'
+    action: text
+
+check_add_failed:
+  - by: xpath
+    locator: '//*[@class="mt-30 f-14"]'
     action: text
 
 click_close:

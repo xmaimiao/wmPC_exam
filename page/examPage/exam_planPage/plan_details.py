@@ -39,9 +39,10 @@ class Plan_Details(BasePage):
         result = self.step(plan_details_dir,"get_current_data_total")
         return int(re.search('(\d+).*?(\d+).*',result).group(2))
 
-    # def delete_exam(self,exam):
-    #     '''
-    #     刪除考試計劃
-    #     :return:
-    #     '''
+    def get_same_examdate_courses(self,examdate):
+        '''
+        獲取相同考試時間的科目
+        '''
+        self._params["examdate"] = examdate
+        return self.step(plan_details_dir,"get_same_examdate_courses")
 

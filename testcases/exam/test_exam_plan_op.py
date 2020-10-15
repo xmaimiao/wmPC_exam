@@ -23,6 +23,9 @@ class Test_Exam_Plan:
         test_add_exam_same_examCode_pre2_datas = datas["test_add_exam_same_examCode_pre2"]
         test_add_exam_same_examCode_end1_datas = datas["test_add_exam_same_examCode_end1"]
         test_add_exam_same_examCode_end2_datas = datas["test_add_exam_same_examCode_end2"]
+        test_add_exam_same_examCode_roomCode_datas = datas["test_add_exam_same_examCode_roomCode"]
+        test_add_exam_same_examCode_update_examdate1_datas = datas["test_add_exam_same_examCode_update_examdate1"]
+        test_add_exam_same_examCode_update_examdate2_datas = datas["test_add_exam_same_examCode_update_examdate2"]
 
     # def setup_class(self):
     #     '''
@@ -103,6 +106,7 @@ class Test_Exam_Plan:
             add_examCode(data["examCode"]).add_course_1(data["course"]).\
             add_teacher_1(data["teacher_1"]).add_class(data["classdata"]).\
             add_examdate(examdate).add_examtime(data["examtime"]).\
+            add_roomCode(data["roomCode"]).add_invigilate_one(data["invigilate_one"]).\
             add_grade(data["grade"]).click_save().check_add_succeed()
         assert data["expect"] == result1
 
@@ -128,14 +132,14 @@ class Test_Exam_Plan:
         # 獲取當前的時間
         now_time = datetime.datetime.now()
         # 格式化輸出當前日期-1天的時間
-        examdate = (now_time + datetime.timedelta(days=-1)).strftime('%Y-%m-%d')
+        # examdate = (now_time + datetime.timedelta(days=-1)).strftime('%Y-%m-%d')
         # 先驗證前提條件，創建科目A成功
         result1 = self.main.goto_exam_plan(). \
             goto_plan_details(data["plan_name"]). \
             goto_add_exam(). \
             add_examCode(data["examCode"]).add_course_1(data["course"]). \
             add_teacher_1(data["teacher_1"]).add_class(data["classdata"]). \
-            add_examdate(examdate).add_examtime(data["examtime"]). \
+            add_examdate(now_time).add_examtime(data["examtime"]). \
             add_grade(data["grade"]).click_save().check_add_succeed()
         assert data["expect"] == result1
 
@@ -145,13 +149,6 @@ class Test_Exam_Plan:
         验证提示：
         该排考编号的科目考试已结束，如需继续请更换排考编号
         '''
-        result1 = self.main.goto_exam_plan(). \
-            goto_plan_details(data["plan_name"]). \
-            goto_add_exam(). \
-            add_examCode(data["examCode"]).get_same_examCode_end_toast()
-
-        assert data["expect"] in result1
-
         # 在驗證創建同排考編號的科目B其日期和時間同步設置
         result2 = self.main.goto_exam_plan(). \
             goto_plan_details(data["plan_name"]). \
@@ -159,4 +156,65 @@ class Test_Exam_Plan:
             add_examCode(data["examCode"]). \
             get_same_examCode_end_toast()
         assert data["expect"] in result2
+
+    @pytest.mark.parametrize("data", test_add_exam_same_examCode_roomCode_datas)
+    def test_add_exam_same_examCode_roomCode(self,data):
+        '''
+        驗證同排考編號科目，考場不可相同
+        '''
+        result1 = self.main.goto_exam_plan(). \
+            goto_plan_details(data["plan_name"]). \
+            goto_add_exam(). \
+            add_examCode(data["examCode"]).add_course_1(data["course"]). \
+            add_teacher_1(data["teacher_1"]).add_class(data["classdata"]). \
+            add_roomCode_same_examCode(data["roomCode"]).\
+            click_save_same_examCode().check_add_failed()
+        assert data["expect"] == result1
+
+    @pytest.mark.parametrize("data", test_add_exam_same_examCode_roomCode_datas)
+    def test_add_exam_same_examCode_roomCode(self,data):
+        '''
+        驗證同排考編號科目，監考員不可相同
+        '''
+        result1 = self.main.goto_exam_plan(). \
+            goto_plan_details(data["plan_name"]). \
+            goto_add_exam(). \
+            add_examCode(data["examCode"]).add_course_1(data["course"]). \
+            add_teacher_1(data["teacher_1"]).add_class(data["classdata"]). \
+            add_roomCode_same_examCode(data["roomCode"]).\
+            click_save_same_examCode().check_add_failed()
+        assert data["expect"] == result1
+
+    @pytest.mark.parametrize("data", test_add_exam_same_examCode_update_examdate1_datas)
+    def test_add_exam_same_examCode_update_examdate1(self,data):
+        '''
+        验证同排考編號考試時間更改后自動同步
+        前提：創建科目A
+        '''
+        result1 = self.main.goto_exam_plan(). \
+            goto_plan_details(data["plan_name"]). \
+            goto_add_exam(). \
+            add_examCode(data["examCode"]).add_course_1(data["course"]). \
+            add_teacher_1(data["teacher_1"]).add_class(data["classdata"]). \
+            add_examdate(data["examdate"]).add_examtime(data["examtime"]). \
+            add_roomCode(data["roomCode"]).add_invigilate_one(data["invigilate_one"]). \
+            add_grade(data["grade"]).click_save().check_add_succeed()
+        assert data["expect"] == result1
+
+    @pytest.mark.parametrize("data", test_add_exam_same_examCode_update_examdate2_datas)
+    def test_add_exam_same_examCode_update_examdate2(self, data):
+        '''
+        验证同排考編號科目B，考試時間更改后自動同步科目A
+        '''
+        # 獲取當前的時間
+        result1 = self.main.goto_exam_plan(). \
+            goto_plan_details(data["plan_name"]). \
+            goto_add_exam(). \
+            add_examCode(data["examCode"]).add_course_1(data["course"]). \
+            add_teacher_1(data["teacher_1"]).add_class(data["classdata"]). \
+            add_examdate_same_examCode(data["examdate"]). \
+            click_save_same_examCode().\
+            close_and_goto_plan_details().\
+            get_same_examdate_courses(data["examdate"])
+        assert data["expect"] == result1
 

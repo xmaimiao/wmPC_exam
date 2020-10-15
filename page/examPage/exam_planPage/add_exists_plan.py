@@ -2,8 +2,6 @@ from time import sleep
 
 import win32con
 import win32gui
-from selenium.common.exceptions import NoSuchElementException
-
 from common.contants import add_exists_plan_dir
 from page.basepage import BasePage
 from page.examPage.exam_planPage.plan_details import Plan_Details
@@ -50,7 +48,7 @@ class Add_Exists_Plan(BasePage):
 
     def check_upload_result(self):
         '''
-        检查上传结果,判断“請通過校驗後提交”是否存在页面中，存在返回Ture，不存在返回False
+        检查上传结果,判断“請通過校驗後提交”是否存在页面中，校驗失敗結果
         '''
         return self.step(add_exists_plan_dir,"check_upload_result")
 
@@ -61,7 +59,7 @@ class Add_Exists_Plan(BasePage):
         try:
             self.step(add_exists_plan_dir,"download_result")
             return self
-        except NoSuchElementException as e:
+        except Exception as e:
             return self
 
     def goto_plan_details(self):
