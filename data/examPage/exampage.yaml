@@ -1,4 +1,15 @@
 goto_exam_plan:
   - by: xpath
-    locator: '//*[@class="ivu-menu-item ivu-menu-item-active ivu-menu-item-selected"]/div/span[2]'
+    locator: '//*[contains(text(),"排考計劃")]'
     action: click
+
+
+goto_room_setting:
+  - by: xpath
+    locator: '//*[contains(text(),"考室分配")]'
+    action: click
+
+get_memu_num:
+  - by: xpath
+    locator: '//*[@class="app-sider sider"]/ul/a'
+    action: eles

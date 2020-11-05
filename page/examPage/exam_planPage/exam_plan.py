@@ -25,3 +25,10 @@ class Exam_Plan(BasePage):
         except NoSuchElementException as e:
             print("排考計劃列表沒有該計劃")
             raise e
+
+    def goto_the_first_plan_details(self):
+        '''
+        打開第一行的計劃，進入計劃詳情
+        '''
+        self.step(exam_plan_dir, "goto_the_first_plan_details")
+        return Plan_Details(self._driver)

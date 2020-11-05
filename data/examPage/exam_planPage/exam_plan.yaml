@@ -6,3 +6,8 @@ goto_plan_details:
   - by: xpath
     locator: '//*[contains(text(),"${plan_name}")]'
     action: click
+
+goto_the_first_plan_details:
+  - by: xpath
+    locator: '//*[@class="ivu-table-tbody"]/tr[1]/td[2]//div[@class="link"]'
+    action: click

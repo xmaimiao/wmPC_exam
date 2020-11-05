@@ -1,0 +1,13 @@
+#uat密码wemust@Better  正式站：wemust@prod
+dev: {username: test11,password: wemust@dev,application: 請假}
+uat: {username: mai2,password: wemust@Better,application: 請假}
+mo: {username: test38-test,password: wemust@prod,application: 請假}
+
+test_check_add_plan_succeed:
+#44.測試用數據
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1030計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel44.xls,expect: 當前計劃}
+
+test_add_double_exam:
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1030計劃1,examCode: BL4014-07,course_1: BDZ1907,classdata_1: [ "D4"],teacher_1: [ "jchen", ],
+      course_2: BDZ1901,classdata_2: [ "D2"],roomCode: O304,teacher_2: [ "jchen", ],
+      num: 40,invigilate_one: jchen,examdate: 2020-10-31,examtime: 08:00 - 10:00,expect: 4 }

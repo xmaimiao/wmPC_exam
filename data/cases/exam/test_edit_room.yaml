@@ -1,0 +1,14 @@
+#uat密码wemust@Better  正式站：wemust@prod
+dev: {username: test11,password: wemust@dev,application: 考試}
+uat: {username: mai2,password: wemust@Better,application: 考試}
+mo: {username: test38-test,password: wemust@prod,application: 考試}
+
+test_add_examroom:
+#  - {username: test38-test,password: wemust@prod,application: 考試,room: A101,seatCount: 2,startSn: 6000,faculty: FI,expect: 保存成功}
+#  - {username: test38-test,password: wemust@prod,application: 考試,room: A104,seatCount: 2,startSn: 6000,faculty: FI,expect: 保存成功}
+#  - {username: test38-test,password: wemust@prod,application: 考試,room: O305,seatCount: 10,startSn: 6000,faculty: FI,expect: 保存成功}
+  - {username: test38-test,password: wemust@prod,application: 考試,room: O306,seatCount: 10,startSn: 6000,faculty: FI,expect: 保存成功}
+test_delete_examroom:
+  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: A105,expect: 0}
+test_edit_examroom:
+  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: O610,seatCount: 50,startSn: 4851,expect: 保存成功}

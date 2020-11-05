@@ -10,6 +10,9 @@ get_plan_name:
 
 get_current_data_total:
   - by: xpath
+    locator: 2
+    action: sleep
+  - by: xpath
     locator: '//*[@class="total"]'
     action: text
 
@@ -17,3 +20,11 @@ get_same_examdate_courses:
   - by: xpath
     locator: '//*[contains(text(),"${examdate}")]'
     action: len
+
+goto_the_first_exam_studenttable:
+  - by: xpath
+    locator: '//*[@class="ivu-table-tbody"]/tr[1]/td[7]//div[@class="link"]'
+    action: wait_click
+  - by: xpath
+    locator: '//*[@class="ivu-table-tbody"]/tr[1]/td[7]//div[@class="link"]'
+    action: click

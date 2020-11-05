@@ -1,0 +1,5 @@
+setup_datas: {username: test11,password: wemust@dev,application: 考試}
+test_get_memu_num:
+  - {username: test11,password: wemust@dev,application: 考試,expect: 5}
+test_get_Z_M_course_teachername:
+  - {username: test11,password: wemust@dev,application: 考試,memu: 教師課表(本科),year: 2020,month: 9,day: 23,course_type: 網課,week: 三,course_num: 2,expect: "張鋒,徐懿"}

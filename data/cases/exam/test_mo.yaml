@@ -1,0 +1,44 @@
+dev: {username: test308,password: wemust@dev,application: 考試}
+uat: {username: mai2,password: wemust@2020,application: 考試}
+mo: {username: test38-test,password: wemust@prod,application: 考試}
+#测试之前确保计划之间的冲突，最好删除其他考试计划
+
+test_check_upload_exists_plan:
+
+#2.上传计划，验证学生冲突，计划内冲突（错误和警告均出现）pass
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/03計劃3,
+#     excel_path: D:\PycharmProjects\wmPC_exam\excel\mo_excel2.xls,expect: True}
+
+#3（-1）.上传计划，验证考场冲突，与其他计划冲突pass
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/03計劃3,
+     excel_path: D:\PycharmProjects\wmPC_exam\excel\mo_excel3.xls,expect: True}
+
+test_check_add_plan_succeed:
+#1.基础数据：上传计划成功(同排考编号，按顺序依次排满考场),学生APP显示正常，监考员APP显示正常，行事历显示正常
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/04計劃1,
+#     excel_path: D:\PycharmProjects\wmPC_exam\excel\mo_excel1.xls,expect: 當前計劃}
+
+#4.上传计划，操作前设置为T，查看学生人数和课表APP（BFP12013-TEST D4-2-TEST 2009  学生：ts1）
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/04計劃2,
+#     excel_path: D:\PycharmProjects\wmPC_exam\excel\mo_excel4.xls,expect: 當前計劃}
+
+#5.考警告效果及提示，考生一门科目两个考试计划APP显示pass
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/04計劃3,
+     excel_path: D:\PycharmProjects\wmPC_exam\excel\mo_excel5.xls,expect: 當前計劃}
+
+test_add_exam:
+#6.添加考试，验证学生与其他计划冲突 pass
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/04計劃1,examCode: BL4014-03,
+     course_1: BFP12013-TEST,classdata_1: ["D4-2-TEST",], roomCode: O304,teacher_1: ["test36-test",],
+      invigilate_one: test36-test,examdate: 2020-11-20,examtime: 15:00 - 17:00,expect: 3}
+
+test_add_exam_stu_num:
+#7.添加考试，班别添加部分学生，行事历，教职工APP显示人数,验证还能再添加部分pass
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/04計劃2,examCode: BL4014-03,
+#     course_1: BFP12013-TEST2,classdata_1: ["D4-2-TEST",], roomCode: O304,teacher_1: ["test38-test",],
+#     num: 1,invigilate_one: test38-test,examdate: 2020-12-01,examtime: 10:00 - 12:00,expect: 2}
+#
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/04計劃2,examCode: BL4014-04,
+      course_1: BFP12013-TEST2,classdata_1: [ "D4-2-TEST", ], roomCode: O305,teacher_1: [ "test38-test", ],
+      num: 1,invigilate_one: test38-test,examdate: 2020-12-01,examtime: 10:00 - 12:00,expect: 3 }
+

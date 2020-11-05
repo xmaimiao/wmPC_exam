@@ -1,5 +1,7 @@
-from common.contants import exampage_dir
-from page.basepage import BasePage
+import yaml
+
+from common.contants import exampage_dir, main1_dir, basepage_dir
+from page.basepage import BasePage, _get_working
 from page.index import Index
 from page.loginpage import Login
 
@@ -8,9 +10,12 @@ class Main(BasePage):
     '''
     首頁面po
     '''
-    # _base_url = "http://wmstaff-entry.doocom.net/home"
-    # _base_url = "https://oa.must.edu.mo/home/"
-    # _base_url = "https://oa-wmtest.must.edu.mo:10443/home/"
+    _working = _get_working()
+
+    with open(basepage_dir, encoding="utf-8") as f:
+        env = yaml.safe_load(f)
+        if _working != "port":
+            _base_url = env["docker_env"][env["default"]]
 
     def goto_login(self):
         '''
@@ -26,6 +31,14 @@ class Main(BasePage):
         '''
         return Index(self._driver)
 
+    def back_to_index(self):
+        '''
+        在其他應用回到首頁
+        :return:
+        '''
+        self.step(main1_dir,"back_to_index")
+        return Index(self._driver)
+
 
 
     def goto_exam_plan(self):
@@ -36,3 +49,13 @@ class Main(BasePage):
         self.step(exampage_dir,"goto_exam_plan")
         from page.examPage.exam_planPage.exam_plan import Exam_Plan
         return Exam_Plan(self._driver)
+
+    def goto_room_setting(self):
+        '''
+        打开考室分配
+        '''
+        self.step(exampage_dir,"goto_room_setting")
+        from page.examPage.room_setting.room_setting import Room_Setting
+        return Room_Setting(self._driver)
+
+

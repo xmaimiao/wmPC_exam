@@ -1,0 +1,41 @@
+#uat密码wemust@Better  正式站：wemust@prod
+dev: {username: test11,password: wemust@dev,application: 請假}
+uat: {username: mai2,password: wemust@Better,application: 請假}
+mo: {username: test38-test,password: wemust@prod,application: 請假}
+
+test_check_upload_exists_plan:
+#48.文件内學生衝突
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1004計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel48.xls,expect: True }
+#45(-44).與其他計劃衝突，學生，看提示語
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1004計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel45.xls,expect: True }
+#41.同排考編號同一科目，D1、D2班別分別兩行分配同一考場A100,監考員去重>4報錯
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1004計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel41.xls,expect: True }
+#42.bug27174同排考編號同一科目，D1、D2班別分別兩行分配同一考場A100,支持監考員重叠
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1004計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel42.xls,expect: False }
+#43（-31）.與其他計劃衝突，監考員，看提示語
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1004計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel43.xls,expect: True }
+#7.1同排考编号，验证考室是否冲突，与文件内考室冲突（同排考编号科目A数据2与科目B冲突）
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 0930計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel7_1.xls,expect: True}
+
+test_check_add_plan_succeed:
+#44.測試用數據
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/02計劃1-01,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel44.xls,expect: 當前計劃}
+#31.同排考編號同一科目，D1#D2班別兩行分配不同考場A101、A102,考場無剩餘座位
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/02計劃1-02,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel31.xls,expect: 當前計劃 }
+test_add_exam:
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/02計劃1-01,examCode: BL4014-02,course_1: PES-10,classdata_1: [ "D01" ],
+      num: 30,roomCode: A102,teacher_1: [ "duzhang", ],invigilate_one: duzhang,examdate: 2020-11-29,examtime: 15:00 - 17:00,expect: 3 }
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/02計劃1-01,examCode: BL4014-02,course_1: PES-02,classdata_1: [ "D01" ],
+      num: 30,roomCode: A102,teacher_1: [ "duzhang", ],invigilate_one: test11,examdate: 2020-11-29,examtime: 10:00 - 12:00,expect: 4 }
+
+test_add_exam_false:
+##1.計劃内考室衝突
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1029計劃1,examCode: BL4014-02,course_1: PES-10,classdata_1: [ "D01" ],
+#      num: 30,roomCode: A102,teacher_1: [ "jchen", ],invigilate_one: jchen,examdate: 2020-11-30,examtime: 15:00 - 17:00,expect: 5 }
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/02計劃1-01,examCode: BL4014-02,course_1: BFP12013,classdata_1: [ "D4-2-TEST" ],
+      num: 30,roomCode: A102,teacher_1: [ "jchen", ],invigilate_one: jchen,examdate: 2020-11-30,examtime: 15:00 - 17:00,expect: 5 }
+#2.計劃内監考員衝突
+#3.計劃内學生衝突
+#4.與其他計劃考室衝突
+#5.與其他計劃監考員衝突
+#6與其他計劃學生衝突

@@ -3,3 +3,13 @@ goto_application:
     by: xpath
     locator: '//*[@class="link-button head-button hv-bright"][last()]/i'
     action: click
+
+quit:
+  -
+    by: xpath
+    locator: '//*[@class="link-button user-info"]/span'
+    action: click
+  -
+    by: xpath
+    locator: '//*[@class="link-button user-info"]/../../div[2]//li[last()]'
+    action: click

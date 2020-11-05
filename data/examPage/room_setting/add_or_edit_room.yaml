@@ -1,0 +1,77 @@
+edit_roomCode:
+#定位到課時input框
+  - by: xpath
+    locator: '//*[@class="ivu-form ivu-form-label-right"]/div[1]//input[@class="ivu-select-input"]'
+    action: wait
+  - by: xpath
+    locator: '//*[@class="ivu-form ivu-form-label-right"]/div[1]//input[@class="ivu-select-input"]'
+    action: send
+    value: ${room}
+#從下拉框選擇正確的考室
+  - by: xpath
+    locator: 2
+    action: sleep
+  - by: xpath
+    locator: '//*[contains(text(),"${room}") and @class="ivu-select-item"]'
+    action: click
+
+edit_seatCount:
+  - by: xpath
+    locator: '//*[@class="ivu-form ivu-form-label-right"]/div[2]//input'
+    action: clear
+  - by: xpath
+    locator: '//*[@class="ivu-form ivu-form-label-right"]/div[2]//input'
+    action: send
+    value: ${seatCount}
+
+edit_startSn_and_endSn:
+  - by: xpath
+    locator: '//*[@class="ivu-form ivu-form-label-right"]/div[3]/div/div[1]//input'
+    action: click
+  - by: xpath
+    locator: 1
+    action: sleep
+  - by: xpath
+    locator: '//*[@class="ivu-form ivu-form-label-right"]/div[3]/div/div[1]//input'
+    action: clear
+  - by: xpath
+    locator: '//*[@class="ivu-form ivu-form-label-right"]/div[3]/div/div[1]//input'
+    action: send
+    value: ${startSn}
+
+faculty_is_exist:
+  - by: xpath
+    locator: '//*[@class="ivu-tag-text"]'
+    action: len
+
+edit_faculty:
+  - by: xpath
+    locator: '//*[@class="ivu-form ivu-form-label-right"]/div[4]//span/../input'
+    action: send
+    value: ${faculty}
+  - by: xpath
+    locator: '//*[@class="ivu-form ivu-form-label-right"]/div[4]//ul[2]/li[1]'
+    action: click
+#出現下拉框遮擋層，再點擊input框收回
+  - by: xpath
+    locator: '//*[@class="ivu-form ivu-form-label-right"]/div[4]//span/../input'
+    action: click
+
+click_save:
+#點擊”保存“按鈕
+  - by: xpath
+    locator: '//*[@class="btn2 ivu-btn ivu-btn-primary"]/span'
+    action: click
+#獲取”保存成功“文本
+  - by: xpath
+    locator: '//*[@class="state"]//h5'
+    action: wait
+  - by: xpath
+    locator: '//*[@class="state"]//h5'
+    action: text
+
+close_page:
+#點擊”x“關閉抽屜
+  - by: xpath
+    locator: '//*[@class="ivu-icon ivu-icon-ios-close"]'
+    action: click

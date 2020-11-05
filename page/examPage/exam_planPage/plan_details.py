@@ -6,6 +6,7 @@ from selenium.common.exceptions import NoSuchElementException
 from common.contants import plan_details_dir
 from page.basepage import BasePage
 from page.examPage.exam_planPage.add_exam import Add_Exam
+from page.examPage.exam_planPage.exam_studenttable import Exam_Studenttable
 
 
 class Plan_Details(BasePage):
@@ -45,4 +46,11 @@ class Plan_Details(BasePage):
         '''
         self._params["examdate"] = examdate
         return self.step(plan_details_dir,"get_same_examdate_courses")
+
+    def goto_the_first_exam_studenttable(self):
+        '''
+        打開第一行的考試，進入學生清單
+        '''
+        self.step(plan_details_dir,"goto_the_first_exam_studenttable")
+        return Exam_Studenttable(self._driver)
 

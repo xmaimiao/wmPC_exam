@@ -1,0 +1,23 @@
+get_course_text:
+  - by: xpath
+    locator: '//*[@class="ivu-table-header"]//th[5]//span'
+    action: wait_display
+  - by: xpath
+    locator: '//*[@class="ivu-table-header"]//th[5]//span'
+    action: text
+
+get_the_first_student_courseCode:
+  - by: xpath
+    locator: '//*[@class="ivu-table-tbody"]/tr[1]/td[5]/div/div/div'
+    action: wait_display
+  - by: xpath
+    locator: '//*[@class="ivu-table-tbody"]/tr[1]/td[5]/div/div/div'
+    action: text
+
+get_exam_title:
+  - by: xpath
+    locator: '//*[@class="searchLine"]/div[1]/div'
+    action: wait_display
+  - by: xpath
+    locator: '//*[@class="searchLine"]/div[1]/div'
+    action: text

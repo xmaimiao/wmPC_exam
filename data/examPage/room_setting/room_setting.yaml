@@ -1,0 +1,54 @@
+add_room:
+  - by: xpath
+    locator: '//*[@class="examroom-top-btn"]/button[3]/span'
+    action: click
+
+search_roomCode:
+#定位到查詢框
+  - by: xpath
+    locator: '//*[@class="search-right"]//input'
+    action: click
+  - by: xpath
+    locator: '//*[@class="search-right"]//input'
+    action: clear
+  - by: xpath
+    locator: '//*[@class="search-right"]//input'
+    action: send
+    value: ${room_keys}
+#點擊”查詢“按鈕
+  - by: xpath
+    locator: '//*[@class="ivu-icon ivu-icon-ios-search"]'
+    action: click
+
+
+edit_the_first_room:
+  - by: xpath
+    locator: '//*[contains(text(),"${room_keys}")]/../../../td[last()]//button[1]/span'
+    action: wait
+  - by: xpath
+    locator: '//*[contains(text(),"${room_keys}")]/../../../td[last()]//button[1]/span'
+    action: click
+
+delect_the_first_room:
+#點擊”刪除“按鈕
+  - by: xpath
+    locator: '//*[contains(text(),"${room_keys}")]/../../../td[last()]//button[2]/span'
+    action: wait
+  - by: xpath
+    locator: '//*[contains(text(),"${room_keys}")]/../../../td[last()]//button[2]/span'
+    action: click
+#點擊彈出框”確認“刪除
+  - by: xpath
+    locator: '//*[@class="ivu-icon ivu-icon-ios-alert"]/../../../div[2]//button[2]/span'
+    action: wait
+  - by: xpath
+    locator: '//*[@class="ivu-icon ivu-icon-ios-alert"]/../../../div[2]//button[2]/span'
+    action: click
+
+get_current_datacount:
+  - by: xpath
+    locator: 1
+    action: sleep
+  - by: xpath
+    locator: '//*[@class="ivu-table-tbody"]/tr'
+    action: len

@@ -1,4 +1,4 @@
-from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 from common.contants import add_exam_dir
 from page.basepage import BasePage
@@ -32,7 +32,6 @@ class Add_Exam(BasePage):
         self.step(add_exam_dir,"add_course_2")
         return self
 
-
     def add_teacher_1(self,teacher_1):
         '''
         填写授课教师
@@ -43,27 +42,27 @@ class Add_Exam(BasePage):
             self.step(add_exam_dir,"add_teacher_1")
         return self
 
-    # def add_teacher_2(self,teacher_2):
-    #     '''
-    #     添加第二门科目用
-    #     :param teacher2: 授课教师，传进来数组
-    #     '''
-    #     self._params["teacher_2"] = teacher_2
-    #     for t in teacher_2:
-    #         self.step(add_exam_dir,"add_teacher_2")
-    #     return self
+    def add_teacher_2(self,teacher_2):
+        '''
+        添加第二门科目用
+        :param teacher2: 授课教师，传进来数组
+        '''
+        for teacher in teacher_2:
+            self._params["teacher_2"] = teacher
+            self.step(add_exam_dir,"add_teacher_2")
+        return self
 
-    def add_class(self,classdatas):
+    def add_class_1(self,classdatas_1):
         '''
         添加班别
         :param classdata: 班别，传进来数组
         '''
-        for classdata in classdatas:
-            self.step(add_exam_dir, "add_class_click_input")
+        for classdata in classdatas_1:
+            self.step(add_exam_dir, "add_class_click_input_1")
             try:
-                self._params["classdata"] = classdata
+                self._params["classdata_1"] = classdata
                 # 根據文本text查找元素會存在多個xxxE1xx元素
-                eles = self.step(add_exam_dir,"add_class")
+                eles = self.step(add_exam_dir,"add_class_1")
                 for ele in eles:
                     # 其中某些元素不可操作，故要判斷，加異常處理抛出異常，繼續執行
                     if ele.is_displayed():
@@ -77,23 +76,39 @@ class Add_Exam(BasePage):
                 raise e
         return self
 
-    # def add_class2(self,classdata2):
-    #     '''
-    #     添加第二门科目用，班别
-    #     :param classdata: 班别，传进来数组
-    #     '''
-    #     self._params["classdata2"] = classdata2
-    #     for c in classdata2:
-    #         self.step()
-    #     return self
+    def add_class_2(self,classdatas_2):
+        '''
+        添加班别
+        :param classdata: 班别，传进来数组
+        '''
+        for classdata in classdatas_2:
+            self.step(add_exam_dir, "add_class_click_input_2")
+            try:
+                self._params["classdata_2"] = classdata
+                # 根據文本text查找元素會存在多個xxxE1xx元素
+                eles = self.step(add_exam_dir,"add_class_2")
+                for ele in eles:
+                    # 其中某些元素不可操作，故要判斷，加異常處理抛出異常，繼續執行
+                    if ele.is_displayed():
+                        try:
+                            ele.click()
+                        except Exception as e:
+                            pass
+                    continue
+            except Exception as e:
+                print("該考試科目已存在，無班別")
+                raise e
+        return self
 
     def add_student_exam(self,num):
         '''
         分配考试人数，不同排考編號科目使用
         :param num: 人数
         '''
-        self._params["num"] = num
-        self.step(add_exam_dir,"add_student_exam")
+        ele = self.step(add_exam_dir,"add_student_exam")
+        # 用clear()和js清空input框的值均失败，故调用键盘清空数据
+        ele.send_keys(Keys.CONTROL, 'a')
+        ele.send_keys(f'{num}')
         return self
 
     def add_grade(self,grade):

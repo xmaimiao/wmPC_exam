@@ -1,0 +1,21 @@
+dev: {username: test308,password: wemust@dev,application: 考試}
+uat: {username: mai2,password: wemust@2020,application: 考試}
+mo: {username: test38-test,password: wemust@prod,application: 考試}
+#测试之前确保计划之间的冲突，最好删除其他考试计划
+
+test_check_upload_exists_plan:
+#1.考試前操作為T，上傳已排計劃，該生不參與考試校驗 1609853A-A111-0093学生
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/02計劃1,
+     excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel49.xls,expect: False}
+
+
+test_check_add_plan_succeed:
+#1.考試前操作為T，上傳已排計劃，該生不參與考試校驗 1609853A-A111-0093学生
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/02計劃1,
+     excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel49.xls,expect: 當前計劃}
+#bug27269 同排考編號的考試科目，需要按順序填滿課室再往下排
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/04計劃1,
+#     excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel50.xls,expect: 當前計劃}
+#正式站数据测试
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/03計劃3,
+#     excel_path: D:\PycharmProjects\wmPC_exam\excel\mo_excel1.xls,expect: 當前計劃}

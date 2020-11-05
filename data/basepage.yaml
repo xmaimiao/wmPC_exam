@@ -1,0 +1,15 @@
+#控制開啓調試/docker容器運行的開關
+switch:
+  1: port
+  2: headless
+  3: brower
+  4: docker
+switch_default: 1
+
+#docker容器環境切換：dev、uat、正式站
+docker_env:
+  dev: "http://wmstaff-entry.doocom.net/home"
+  uat: "https://oa-wmtest.must.edu.mo:10443/home/"
+  mo: "https://oa.must.edu.mo/home/"
+default: uat
+

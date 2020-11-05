@@ -26,9 +26,14 @@ add_course_1:
     action: click
 
 add_course_2:
-  - by: xpath
-    locator: '//*[@class="add ivu-icon ivu-icon-ios-add-circle-outline"]'
+#點擊“+”添加科目,因光標還在下拉框中，故要點擊一次跳出下拉框選項，再點擊一次展開
+  - by: css selector
+    locator: '.select-box>i'
     action: click
+  - by: css selector
+    locator: '.select-box>i'
+    action: click
+#定位科目input框
   - by: xpath
     locator: '//*[@class="select-box"]/form/div/div[1]//input'
     action: click
@@ -37,10 +42,11 @@ add_course_2:
     action: send
     value: ${course_2}
   - by:
-    locator: 1
+    locator: 2
     action: sleep
+#選中下拉框科目
   - by: xpath
-    locator: '//*[@class="select-box"]/form/div/div[1]//ul/li[1]'
+    locator: '//li[contains(text(),"${course_2}")]'
     action: click
 
 add_teacher_1:
@@ -55,36 +61,53 @@ add_teacher_1:
     locator: '//*[@class="select-box"]/form/div/div[3]//ul/li[1]'
     action: click
 
-#add_teacher_2:
-#  - by: xpath
-#    locator: '//*[@class="select-box"]/form/div/div[3]//input'
-#    action: click
-#  - by: xpath
-#    locator: '//*[@class="select-box"]/form/div/div[3]//input'
-#    action: send
-#    value: ${teacher_1}
-#  - by: xpath
-#    locator: '//*[contains(text(),"${teacher_1}")]'
-#    action: wait_click
-#  - by: xpath
-#    locator: '//*[contains(text(),"${teacher_1}")]'
-#    action: click
+add_teacher_2:
+#定位到教師2的input框
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[2]/div[2]//form/div/div[3]//input'
+    action: click
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[2]/div[2]//form/div/div[3]//input'
+    action: send
+    value: ${teacher_2}
+#點擊下拉框的值
+  - by: xpath
+    locator: 1
+    action: sleep
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[2]/div[2]//form/div/div[3]/div/div[1]/div[2]//li[1]'
+    action: click
 
-add_class_click_input:
+add_class_click_input_1:
   - by: xpath
     locator: '//*[@class="select-box"]/form/div/div[2]//span'
     action: click
 
-add_class:
+add_class_1:
   - by: xpath
-    locator:  '//*[contains(text(),"${classdata}")]'
+    locator:  1
+    action: sleep
+  - by: xpath
+    locator:  '//*[contains(text(),"${classdata_1}")]'
     action: eles
+
+add_class_click_input_2:
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[2]/div[2]//form/div/div[2]//span'
+    action: click
+
+add_class_2:
+  - by: xpath
+    locator:  '//*[contains(text(),"${classdata_2}")]'
+    action: eles
+
 
 add_student_exam:
   - by: xpath
     locator: '//*[@class="ivu-input-number ivu-input-number-default"]//input'
-    action: send
-    value: ${num}
+    action: wait_display
+
+
 
 add_grade:
   - by: xpath
@@ -100,6 +123,9 @@ add_examdate:
     locator: '//*[@class="body"]/form/div[6]/div[1]//input'
     action: send
     value: ${examdate}
+  - by: xpath
+    locator: 2
+    action: sleep
 
 add_examdate_same_examCode:
   - by: xpath
@@ -122,8 +148,14 @@ add_examdate_same_examCode:
 add_examtime:
   - by: xpath
     locator: '//*[@class="body"]/form/div[6]/div[2]//input'
+    action: click
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[6]/div[2]//input'
     action: send
     value: ${examtime}
+#  - by: xpath
+#    locator: 'document.getElementsByClassName("ivu-input ivu-input-default ivu-input-with-suffix")[5].value = "${examtime}"'
+#    action: execute_js
 
 add_examtime_same_examCode:
   - by: xpath
