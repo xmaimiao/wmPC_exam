@@ -68,7 +68,7 @@ class Test_Exam_Plan:
 
         result = self.main.goto_exam_plan().\
             add_exists_plan().\
-            plan_name(data["plan_name"]).term().\
+            plan_name(data["plan_name"]).term(data["term"]).\
             upload_exists_plan_import(data["excel_path"]).\
             download_result().\
             check_upload_result()
@@ -82,7 +82,7 @@ class Test_Exam_Plan:
 
         result = self.main.goto_exam_plan().\
             add_exists_plan().\
-            plan_name(data["plan_name"]).term().\
+            plan_name(data["plan_name"]).term(data["term"]).\
             upload_exists_plan_import(data["excel_path"]).\
             download_result().\
             goto_plan_details().\
@@ -96,7 +96,7 @@ class Test_Exam_Plan:
         '''
         result = self.main.goto_exam_plan(). \
             add_exists_plan(). \
-            plan_name(data["plan_name"]).term(). \
+            plan_name(data["plan_name"]).term(data["term"]). \
             upload_exists_plan_import(data["excel_path"]).\
             goto_plan_details().\
             get_current_exam_total()
@@ -276,3 +276,17 @@ class Test_Exam_Plan:
             goto_the_first_exam_studenttable().\
             get_exam_title()
         assert data["expect"] == exam_title
+
+    @pytest.mark.parametrize("data", test_add_double_exam_datas)
+    def test_(self,data):
+        '''
+        改寫未完，不可用
+        1.驗證學生清單裏科課程已改爲：科目
+        2.驗證學生清單裏科目字段顯示為科目編號
+        '''
+        exam_title = self.main.goto_exam_plan(). \
+            goto_the_first_plan_details().\
+            goto_the_first_exam_studenttable().\
+            get_exam_title()
+        assert data["expect"] == exam_title
+        pass

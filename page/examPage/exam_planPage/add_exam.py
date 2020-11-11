@@ -245,7 +245,7 @@ class Add_Exam(BasePage):
 
     def click_save_same_examCode(self):
         '''
-        保存表单
+        保存表单,同排考科目編號使用
         '''
         self.step(add_exam_dir,"click_save_same_examCode")
         return self
@@ -264,6 +264,7 @@ class Add_Exam(BasePage):
         :return: 保存失敗，獲取提失敗提示語
         '''
         result = self.step(add_exam_dir, "check_add_failed")
+        print(f"添加考試保存失敗：{result}")
         self.step(add_exam_dir, "click_close")
         return result
 

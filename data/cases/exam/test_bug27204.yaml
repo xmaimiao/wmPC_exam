@@ -5,7 +5,7 @@ mo: {username: test38-test,password: wemust@prod,application: 請假}
 
 test_check_add_plan_succeed:
 #44.測試用數據
-  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1030計劃1,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel44.xls,expect: 當前計劃}
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1030計劃1,term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel44.xls,expect: 當前計劃}
 
 test_add_double_exam:
   - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1030計劃1,examCode: BL4014-07,course_1: BDZ1907,classdata_1: [ "D4"],teacher_1: [ "jchen", ],

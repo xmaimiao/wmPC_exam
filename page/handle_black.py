@@ -4,11 +4,11 @@ from selenium.webdriver.common.by import By
 def handlie_blacklist(func):
     def wrapper(*args, **kwargs):
         _blacklist = [
-            # (By.XPATH, '//*[@class="ivu-drawer-wrap we-drawer"]/div/div/div/div[3]/i'),
-            # (By.XPATH, '//*[@class="quit-btn ivu-btn ivu-btn-default"]/span'),
-            (By.XPATH, '//*[@name="submit"]'),
-            # (By.XPATH, '//*[@class="layui-layer-btn0"]'),
-            # (By.XPATH, '//*[@id="cboxClose"]')
+            (By.XPATH, '//*[@class="ivu-drawer-wrap we-drawer"]/div/div/div/div[3]/i'),
+            (By.XPATH, '//*[@class="quit-btn ivu-btn ivu-btn-default"]/span'),
+            # (By.XPATH, '//*[@name="submit"]'),
+            (By.XPATH, '//*[@class="layui-layer-btn0"]'),
+            (By.XPATH, '//*[@id="cboxClose"]')
         ]
         _leave_confirm = (By.XPATH,'//*[@class="subbox"]/input[@class="submit"]')
         _max_err_num = 3

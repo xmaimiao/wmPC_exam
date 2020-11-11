@@ -58,7 +58,7 @@ class Test_bug27204:
 
         result = self.main.goto_exam_plan().\
             add_exists_plan().\
-            plan_name(data["plan_name"]).term().\
+            plan_name(data["plan_name"]).term(data["term"]).\
             upload_exists_plan_import(data["excel_path"]).\
             download_result().\
             goto_plan_details().\

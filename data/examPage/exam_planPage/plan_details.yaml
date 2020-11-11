@@ -28,3 +28,14 @@ goto_the_first_exam_studenttable:
   - by: xpath
     locator: '//*[@class="ivu-table-tbody"]/tr[1]/td[7]//div[@class="link"]'
     action: click
+
+del_plan:
+  - by: xpath
+    locator: '//*[@class="title-bar"]//button[3]/span/span'
+    action: wait_click
+  - by: xpath
+    locator: '//*[@class="title-bar"]//button[3]/span/span'
+    action: click
+  - by: xpath
+    locator: '//*[@class="ivu-modal-wrap"]/div/div/div[3]/button[2]/span'
+    action: click

@@ -16,11 +16,20 @@ class Add_Exists_Plan(BasePage):
         self.step(add_exists_plan_dir,"plan_name")
         return self
 
-    def term(self):
+    def term(self,term):
         '''
         选择学期
         '''
+        self._params["term"] = term
         self.step(add_exists_plan_dir,"term")
+        return self
+
+    def exam_type(self,type):
+        '''
+        选择考試類型
+        '''
+        self._params["type"] = type
+        self.step(add_exists_plan_dir,"exam_type")
         return self
 
     def upload_exists_plan_import(self,excel_path):
@@ -67,7 +76,6 @@ class Add_Exists_Plan(BasePage):
         点击保存
         进入计划详情页
         '''
-        sleep(5)
         self.step(add_exists_plan_dir,"goto_plan_details")
         return Plan_Details(self._driver)
 

@@ -45,6 +45,10 @@ test_student_of_T_dir = os.path.join(base_dir,'data/cases/exam/test_student_of_T
 
 test_mo_dir = os.path.join(base_dir,'data/cases/exam/test_mo.yaml')
 
+test_student_of_makeup_exam_dir = os.path.join(base_dir,'data/cases/exam/test_student_of_makeup_exam.yaml')
+
+test_bug_all_of_11_11_dir = os.path.join(base_dir,'data/cases/exam/test_bug_all_of_11_11.yaml')
+
 
 
 class TestPath:

@@ -7,6 +7,16 @@ from page.examPage.exam_planPage.plan_details import Plan_Details
 
 
 class Exam_Plan(BasePage):
+
+    def get_ele_of_addplan(self):
+        '''
+        获取“添加计划”元素，验证回到了计划列表页面
+        '''
+        try:
+            return self.step(exam_plan_dir,"get_ele_of_addplan")
+        except Exception as e:
+            print("删除过程有误，请检查！")
+
     def add_exists_plan(self):
         '''
         添加已排计划
@@ -32,3 +42,11 @@ class Exam_Plan(BasePage):
         '''
         self.step(exam_plan_dir, "goto_the_first_plan_details")
         return Plan_Details(self._driver)
+
+    def goto_release_undergraduate_plan(self):
+        '''
+        根據計劃名稱進行發佈操作
+        發佈本科計劃，此處默認“全選”發佈
+        '''
+        self.step(exam_plan_dir,"goto_release_undergraduate_plan")
+        return Release_Undergraduate_Plan(self._driver)

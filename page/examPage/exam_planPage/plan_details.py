@@ -54,3 +54,16 @@ class Plan_Details(BasePage):
         self.step(plan_details_dir,"goto_the_first_exam_studenttable")
         return Exam_Studenttable(self._driver)
 
+    def del_plan(self):
+        '''
+        進入計劃詳情，刪除該計劃
+        先判斷”刪除“按鈕仍在，在即刪除，否則抛出錯誤
+        '''
+        try:
+            self.step(plan_details_dir,"del_plan")
+            from page.examPage.exam_planPage.exam_plan import Exam_Plan
+            return Exam_Plan(self._driver)
+        except Exception as e:
+            print("該頁面沒有刪除按鈕！")
+            raise e
+

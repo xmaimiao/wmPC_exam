@@ -9,10 +9,18 @@ plan_name:
 
 term:
   - by: xpath
-    locator: '//*[@class="ivu-select-placeholder"]'
+    locator: '//*[contains(text(),"學期")]/../div//span'
     action: click
   - by: xpath
-    locator: '//*[contains(text(),"學期")]/../div/div/div[2]/ul[2]/li[contains(text(),"2009")]'
+    locator: '//*[contains(text(),"學期")]/../div/div/div[2]/ul[2]/li[contains(text(),"${term}")]'
+    action: click
+
+exam_type:
+  - by: xpath
+    locator: '//*[contains(text(),"考試類型")]/../div//span'
+    action: click
+  - by: xpath
+    locator: '//*[contains(text(),"考試類型")]/../div//li[contains(text(),"${type}")]'
     action: click
 
 upload_exists_plan_import:

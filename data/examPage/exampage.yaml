@@ -1,6 +1,6 @@
 goto_exam_plan:
   - by: xpath
-    locator: '//*[contains(text(),"排考計劃")]'
+    locator: '//*[@class="app-sider sider"]//*[contains(text(),"排考計劃")]'
     action: click
 
 
