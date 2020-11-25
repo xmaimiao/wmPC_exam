@@ -1,4 +1,5 @@
 import os
+import shelve
 import sys
 from common.contants import basepage_dir, test_mo_dir
 from page.basepage import _get_working
@@ -6,7 +7,7 @@ from page.basepage import _get_working
 curPath = os.path.abspath(os.path.dirname(__file__))
 base_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(base_dir)
-sys.path.append('..')
+sys.path.append('../../data/cases')
 from page.main import Main
 import pytest
 import yaml
@@ -27,6 +28,9 @@ class Test_Mo:
         test_check_add_plan_succeed_datas = datas["test_check_add_plan_succeed"]
         test_add_exam_datas = datas["test_add_exam"]
         test_add_exam_stu_num_datas = datas["test_add_exam_stu_num"]
+        test_add_examroom_datas = datas["test_add_examroom"]
+        test_delete_examroom_datas = datas["test_delete_examroom"]
+        test_del_exam_plan_datas = datas["test_del_exam_plan"]
 
     _working = _get_working()
     if _working == "port":
@@ -110,3 +114,36 @@ class Test_Mo:
             click_save().close_and_goto_plan_details(). \
             get_current_exam_total()
         assert data["expect"] == result
+
+    @pytest.mark.parametrize("data", test_delete_examroom_datas)
+    def test_delete_examroom(self, data):
+        '''
+        验证刪除考室
+        '''
+        result = self.main.goto_room_setting(). \
+            search_roomCode(data["room_keys"]).\
+            delect_the_first_room().get_current_datacount()
+        assert result == data["expect"]
+
+    @pytest.mark.parametrize("data", test_add_examroom_datas)
+    def test_add_examroom(self, data):
+        '''
+        验证添加考室
+        '''
+
+        result = self.main.goto_room_setting().\
+            add_room().edit_roomCode(data["room"]).\
+            edit_seatCount(data["seatCount"]).\
+            edit_faculty(data["faculty"]).\
+            click_save()
+        assert result == data["expect"]
+
+    @pytest.mark.parametrize("data", test_del_exam_plan_datas)
+    def test_del_exam_plan(self,data):
+        '''
+        驗證刪除考試計劃
+        '''
+        result = self.main.goto_exam_plan(). \
+            goto_plan_details(data["plan_name"]). \
+            del_plan().get_ele_of_addplan()
+        assert result == data["expect"]

@@ -13,3 +13,8 @@ get_memu_num:
   - by: xpath
     locator: '//*[@class="app-sider sider"]/ul/a'
     action: eles
+
+goto_search_of_student:
+  - by: xpath
+    locator: '//*[contains(text(),"按學生查詢")]'
+    action: click

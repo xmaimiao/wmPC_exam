@@ -33,7 +33,7 @@ delect_the_first_room:
 #點擊”刪除“按鈕
   - by: xpath
     locator: '//*[contains(text(),"${room_keys}")]/../../../td[last()]//button[2]/span'
-    action: wait
+    action: wait_click
   - by: xpath
     locator: '//*[contains(text(),"${room_keys}")]/../../../td[last()]//button[2]/span'
     action: click

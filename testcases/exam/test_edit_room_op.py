@@ -1,5 +1,6 @@
 import datetime
 import os
+import shelve
 import sys
 from common.contants import test_edit_room_dir, basepage_dir
 from page.basepage import _get_working
@@ -75,7 +76,10 @@ class Test_Exam_Plan:
         result = self.main.goto_room_setting(). \
             search_roomCode(data["room_keys"]).\
             delect_the_first_room().get_current_datacount()
-        assert result == data["expect"]
+        db = shelve.open("room_total")
+        before_room_total = db["room_total"]
+        db.close()
+        assert result == before_room_total - 1
 
     @pytest.mark.parametrize("data", test_edit_examroom_datas)
     def test_edit_examroom(self, data):

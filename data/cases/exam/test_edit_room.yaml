@@ -5,10 +5,13 @@ mo: {username: test38-test,password: wemust@prod,application: 考試}
 
 test_add_examroom:
 #  - {username: test38-test,password: wemust@prod,application: 考試,room: A101,seatCount: 2,startSn: 6000,faculty: FI,expect: 保存成功}
-#  - {username: test38-test,password: wemust@prod,application: 考試,room: A104,seatCount: 2,startSn: 6000,faculty: FI,expect: 保存成功}
+  - {username: test38-test,password: wemust@prod,application: 考試,room: A104,seatCount: 21,startSn: 6000,faculty: FI,expect: 保存成功}
 #  - {username: test38-test,password: wemust@prod,application: 考試,room: O305,seatCount: 10,startSn: 6000,faculty: FI,expect: 保存成功}
-  - {username: test38-test,password: wemust@prod,application: 考試,room: O306,seatCount: 10,startSn: 6000,faculty: FI,expect: 保存成功}
+#  - {username: test38-test,password: wemust@prod,application: 考試,room: A102,seatCount: 22,startSn: 6000,faculty: FI,expect: 保存成功}
 test_delete_examroom:
-  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: A105,expect: 0}
+  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: A101}
+  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: A104}
+  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: O305}
 test_edit_examroom:
-  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: O610,seatCount: 50,startSn: 4851,expect: 保存成功}
+  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: A102,seatCount: 67,startSn: 6000,expect: 保存成功}
+  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: A104,seatCount: 90,startSn: 7000,expect: 保存成功}

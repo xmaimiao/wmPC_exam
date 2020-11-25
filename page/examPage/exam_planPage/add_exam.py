@@ -5,6 +5,11 @@ from page.basepage import BasePage
 
 
 class Add_Exam(BasePage):
+
+    def wait_sleep(self,sleeps):
+        self.sleep(sleeps)
+        return self
+
     def add_examCode(self,examCode):
         '''
         填写排考编号
@@ -74,11 +79,14 @@ class Add_Exam(BasePage):
             except Exception as e:
                 print("該考試科目已存在，無班別")
                 raise e
+            # 展開下拉框選項，且選項為多選的，最後要再次點擊收起下拉框，否則其他元素會被遮擋無法點擊
+            finally:
+                self.step(add_exam_dir, "add_class_click_input_1")
         return self
 
     def add_class_2(self,classdatas_2):
         '''
-        添加班别
+        添加班别,添加第二门科目用
         :param classdata: 班别，传进来数组
         '''
         for classdata in classdatas_2:
@@ -98,6 +106,80 @@ class Add_Exam(BasePage):
             except Exception as e:
                 print("該考試科目已存在，無班別")
                 raise e
+            # 展開下拉框選項，且選項為多選的，最後要再次點擊收起下拉框，否則其他元素會被遮擋無法點擊
+            finally:
+                self.step(add_exam_dir, "add_class_click_input_2")
+        return self
+
+
+    def add_exam_ruletype_close_book_1(self):
+        '''
+        修改考試形式：閉卷，不同排考科目編號使用
+        '''
+        self.step(add_exam_dir,"add_exam_ruletype_close_book_1")
+        return self
+
+    def add_exam_ruletype_close_book_2(self):
+        '''
+        修改考試形式：閉卷，不同排考科目編號使用 (添加第二门科目用)
+        '''
+        self.step(add_exam_dir,"add_exam_ruletype_close_book_2")
+        return self
+
+    def add_exam_ruletype_calcu_1(self):
+        '''
+        修改考試形式-計算器：是，不同排考科目編號使用
+        '''
+        self.step(add_exam_dir,"add_exam_ruletype_calcu_1")
+        return self
+
+    def add_exam_ruletype_calcu_2(self):
+        '''
+        修改考試形式-計算器：是，不同排考科目編號使用 (添加第二门科目用)
+        '''
+        self.step(add_exam_dir,"add_exam_ruletype_calcu_2")
+        return self
+
+    def add_exam_ruletype_book_1(self):
+        '''
+        修改考試形式-答題本：是，不同排考科目編號使用
+        '''
+        self.step(add_exam_dir,"add_exam_ruletype_book_1")
+        return self
+
+    def add_exam_ruletype_book_2(self):
+        '''
+        修改考試形式-答題本：是，不同排考科目編號使用 (添加第二门科目用)
+        '''
+        self.step(add_exam_dir,"add_exam_ruletype_book_2")
+        return self
+
+    def add_exam_ruletype_dict_1(self):
+        '''
+        修改考試形式-字典：是，不同排考科目編號使用
+        '''
+        self.step(add_exam_dir,"add_exam_ruletype_dict_1")
+        return self
+
+    def add_exam_ruletype_dict_2(self):
+        '''
+        修改考試形式-字典：是，不同排考科目編號使用 (添加第二门科目用)
+        '''
+        self.step(add_exam_dir,"add_exam_ruletype_dict_2")
+        return self
+
+    def add_exam_ruletype_computer_1(self):
+        '''
+        修改考試形式-電腦：是，不同排考科目編號使用
+        '''
+        self.step(add_exam_dir,"add_exam_ruletype_computer_1")
+        return self
+
+    def add_exam_ruletype_computer_2(self):
+        '''
+        修改考試形式-電腦：是，不同排考科目編號使用 (添加第二门科目用)
+        '''
+        self.step(add_exam_dir,"add_exam_ruletype_computer_2")
         return self
 
     def add_student_exam(self,num):
@@ -229,12 +311,6 @@ class Add_Exam(BasePage):
         self.step(add_exam_dir, "add_invigilate_four_same_examCode")
         return self
 
-    def add_exam_ruletype_open_book(self):
-        '''
-        修改考試形式：開卷，不同排考科目編號使用
-        '''
-        self.step(add_exam_dir,"add_exam_ruletype_open_book")
-        return self
 
     def click_save(self):
         '''
@@ -272,7 +348,9 @@ class Add_Exam(BasePage):
         '''
         存在排考編號科目A，已結束考試，創建同科目A的排考編號考試，獲取警告toast
         '''
-        return self.step(add_exam_dir, "get_same_examCode_end_toast")
+        toast =  self.step(add_exam_dir, "get_same_examCode_end_toast")
+        self.step(add_exam_dir, "click_close")
+        return toast
 
     def close_and_goto_plan_details(self):
         self.step(add_exam_dir, "click_close")

@@ -2,6 +2,7 @@ import yaml
 
 from common.contants import exampage_dir, main1_dir, basepage_dir
 from page.basepage import BasePage, _get_working
+from page.examPage.search_of_student.search_of_student import Search_Of_Student
 from page.index import Index
 from page.loginpage import Login
 
@@ -57,5 +58,12 @@ class Main(BasePage):
         self.step(exampage_dir,"goto_room_setting")
         from page.examPage.room_setting.room_setting import Room_Setting
         return Room_Setting(self._driver)
+
+    def goto_search_of_student(self):
+        '''
+        打開“按學生查詢”菜單
+        '''
+        self.step(exampage_dir, "goto_search_of_student")
+        return Search_Of_Student(self._driver)
 
 

@@ -23,10 +23,35 @@ goto_the_first_plan_details:
     locator: '//*[@class="ivu-table-tbody"]/tr[1]/td[2]//div[@class="link"]'
     action: click
 
+simple_search_plan:
+#定位到input輸入框
+  - by: xpath
+    locator: '//*[@class="searchBox"]/div/div/input'
+    action: wait
+  - by: xpath
+    locator: '//*[@class="searchBox"]/div/div/input'
+    action: click
+  - by: xpath
+    locator: '//*[@class="searchBox"]/div/div/input'
+    action: clear
+  - by: xpath
+    locator: '//*[@class="searchBox"]/div/div/input'
+    action: send
+    value: ${plan_name}
+
+#點擊查詢icon
+  - by: xpath
+    locator: '//*[@class="searchBox"]/div/div/i[1]'
+    action: click
+
+
 goto_release_undergraduate_plan:
+  - by: xpath
+    locator: '//*[contains(text(),"${plan_name}")]/../../../../td[last()]//span[contains(text(),"更多")]'
+    action: wait
   - by: xpath
     locator: '//*[contains(text(),"${plan_name}")]/../../../../td[last()]//span[contains(text(),"更多")]'
     action: click
   - by: xpath
-    locator: '//*[contains(text(),"${plan_name}")]/../../../../td[last()]//span[contains(text(),"更多")]'
+    locator: '//*[@class="ivu-poptip-popper v-transfer-dom"][1]//div[contains(text(),"本科發佈")]'
     action: click

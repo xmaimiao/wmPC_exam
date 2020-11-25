@@ -48,3 +48,8 @@ goto_plan_details:
   - by: xpath
     locator: '//*[@class="we f-14 w-120 ivu-btn ivu-btn-primary"]/span/span'
     action: click
+
+get_upload_fail_toast:
+  - by: xpath
+    locator: '//*[@class="ivu-message-custom-content ivu-message-error"]/span'
+    action: wait_display

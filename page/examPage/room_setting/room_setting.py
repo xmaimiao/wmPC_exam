@@ -1,3 +1,5 @@
+import re
+import shelve
 from common.contants import room_setting_dir
 from page.basepage import BasePage
 from page.examPage.room_setting.add_or_edit_room import Add_Or_Edit_Room
@@ -30,8 +32,12 @@ class Room_Setting(BasePage):
         '''
         刪除第一條數據
         '''
-        self.step(room_setting_dir, "delect_the_first_room")
-        return self
+        try:
+            self.step(room_setting_dir, "delect_the_first_room")
+            return self
+        except Exception as e:
+            print("該考室被占用，沒有編輯按鈕！")
+            raise e
 
     def get_current_datacount(self):
         '''

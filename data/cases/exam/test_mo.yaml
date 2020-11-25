@@ -15,16 +15,16 @@ test_check_upload_exists_plan:
 
 test_check_add_plan_succeed:
 #1.基础数据：上传计划成功(同排考编号，按顺序依次排满考场),学生APP显示正常，监考员APP显示正常，行事历显示正常
-#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/04計劃1,
-#     term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\mo_excel1.xls,expect: 當前計劃}
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/04計劃1,
+     term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\mo_excel1.xls,expect: 當前計劃}
 
 #4.上传计划，操作前设置为T，查看学生人数和课表APP（BFP12013-TEST D4-2-TEST 2009  学生：ts1）
 #  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/04計劃2,
 #     term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\mo_excel4.xls,expect: 當前計劃}
 
 #5.考警告效果及提示，考生一门科目两个考试计划APP显示pass
-  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/04計劃3,
-     term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\mo_excel5.xls,expect: 當前計劃}
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/04計劃3,
+#     term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\mo_excel5.xls,expect: 當前計劃}
 
 test_add_exam:
 #6.添加考试，验证学生与其他计划冲突 pass
@@ -42,3 +42,15 @@ test_add_exam_stu_num:
       course_1: BFP12013-TEST2,classdata_1: [ "D4-2-TEST", ], roomCode: O305,teacher_1: [ "test38-test", ],
       num: 1,invigilate_one: test38-test,examdate: 2020-12-01,examtime: 10:00 - 12:00,expect: 3 }
 
+test_add_examroom:
+  - {username: test38-test,password: wemust@prod,application: 考試,room: A101,seatCount: 2,startSn: 6000,faculty: FI,expect: 保存成功}
+#  - {username: test38-test,password: wemust@prod,application: 考試,room: A104,seatCount: 20,startSn: 6000,faculty: FI,expect: 保存成功}
+#  - {username: test38-test,password: wemust@prod,application: 考試,room: O305,seatCount: 10,startSn: 6000,faculty: FI,expect: 保存成功}
+
+test_delete_examroom:
+  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: A101,expect: 0}
+#  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: A104,expect: 0}
+#  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: O305,expect: 0}
+
+test_del_exam_plan:
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/04計劃1,expect: 添加已排計劃 }

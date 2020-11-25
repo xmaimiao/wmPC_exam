@@ -1,4 +1,5 @@
 import re
+import shelve
 from time import sleep
 
 from selenium.common.exceptions import NoSuchElementException
@@ -66,4 +67,24 @@ class Plan_Details(BasePage):
         except Exception as e:
             print("該頁面沒有刪除按鈕！")
             raise e
+
+    def del_exam(self,num):
+        '''
+        進入計劃詳情，根據num定位第N條數據的“刪除”按鈕
+        先判斷”刪除“按鈕仍在，在即刪除，否則抛出錯誤
+        '''
+        self._params["num"] = num
+        # 獲取當前考試科目數據量,存入數據庫中
+        db = shelve.open("exam_total")
+        result = self.step(plan_details_dir,"get_current_data_total")
+        exam_total = int(re.search('(\d+).*?(\d+).*',result).group(2))
+        db["exam_total"] = exam_total
+        db.close()
+        try:
+            self.step(plan_details_dir,"del_exam")
+            return self
+        except Exception as e:
+            print("該頁面沒有刪除按鈕！")
+            raise e
+
 

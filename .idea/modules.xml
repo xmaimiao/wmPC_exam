@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../WM_DC/.idea/WM_DC.iml" filepath="$PROJECT_DIR$/../WM_DC/.idea/WM_DC.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/wmPC.iml" filepath="$PROJECT_DIR$/.idea/wmPC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../wmPC_oevertime/.idea/wmPC_oevertime.iml" filepath="$PROJECT_DIR$/../wmPC_oevertime/.idea/wmPC_oevertime.iml" />
     </modules>
   </component>
 </project>

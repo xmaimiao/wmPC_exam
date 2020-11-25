@@ -1,7 +1,10 @@
 goto_add_exam:
   - by: xpath
-    locator: '//*[@class="we f-14 ml-10 ivu-btn ivu-btn-primary"]/span'
-    action: click
+    locator: 1
+    action: sleep
+  - by: xpath
+    locator: 'return document.getElementsByClassName("we f-14 ml-10 ivu-btn ivu-btn-primary")[0]'
+    action: execute_js_click
 
 get_plan_name:
   - by: xpath
@@ -31,11 +34,23 @@ goto_the_first_exam_studenttable:
 
 del_plan:
   - by: xpath
-    locator: '//*[@class="title-bar"]//button[3]/span/span'
+    locator: '//*[@class="we f-14 ml-10 ivu-btn ivu-btn-warning"]//span[contains(text(),"刪除")]'
     action: wait_click
   - by: xpath
-    locator: '//*[@class="title-bar"]//button[3]/span/span'
+    locator: '//*[@class="we f-14 ml-10 ivu-btn ivu-btn-warning"]//span[contains(text(),"刪除")]'
     action: click
   - by: xpath
     locator: '//*[@class="ivu-modal-wrap"]/div/div/div[3]/button[2]/span'
+    action: click
+
+del_exam:
+  - by: xpath
+    locator: '//*[@class="ivu-table-tbody"]/tr[${num}]/td[last()]/div/div/div[2]'
+    action: wait_click
+  - by: xpath
+    locator: '//*[@class="ivu-table-tbody"]/tr[${num}]/td[last()]/div/div/div[2]'
+    action: click
+#點擊彈框“確認”進行二次確認刪除
+  - by: xpath
+    locator: '//*[@class="ivu-btn ivu-btn-primary ivu-btn-large"]/span'
     action: click

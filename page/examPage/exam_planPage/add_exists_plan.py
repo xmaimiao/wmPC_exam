@@ -79,4 +79,10 @@ class Add_Exists_Plan(BasePage):
         self.step(add_exists_plan_dir,"goto_plan_details")
         return Plan_Details(self._driver)
 
+    def get_upload_fail_toast(self):
+        '''
+        獲取模板錯誤導入失敗的toast
+        '''
+        return (self.step(add_exists_plan_dir,"get_upload_fail_toast")).text
+
 
