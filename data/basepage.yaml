@@ -11,10 +11,10 @@ docker_env:
   dev: "http://wmstaff-entry.doocom.net/home"
   uat: "https://oa-wmtest.must.edu.mo:10443/home/"
   mo: "https://oa.must.edu.mo/home/"
-default: dev
+default: mo
 
 #uat密码wemust@Better  正式站：wemust@prod
 dev: {username: test304,password: wemust@dev,application: 考試}
 uat: {username: test38-test,password: wemust*2020,application: 考試}
-mo: {username: test38-test,password: wemust@prod,application: 考試}
+mo: {username: test38-test,password: wemust@2020,application: 考試}
 
