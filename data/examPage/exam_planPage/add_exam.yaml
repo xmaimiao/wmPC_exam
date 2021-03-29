@@ -175,11 +175,12 @@ add_examdate:
     action: click
   - by: xpath
     locator: '//*[@class="body"]/form/div[5]/div[1]//input'
+    action: clear
+  - by: xpath
+    locator: '//*[@class="body"]/form/div[5]/div[1]//input'
     action: send
     value: ${examdate}
-  - by: xpath
-    locator: 2
-    action: sleep
+
 
 add_examdate_same_examCode:
   - by: xpath
@@ -200,9 +201,9 @@ add_examdate_same_examCode:
     value: ${examdate}
 
 add_examtime:
-  - by: xpath
-    locator: '//*[@class="body"]/form/div[5]/div[2]//input'
-    action: click
+#  - by: xpath
+#    locator: '//*[@class="body"]/form/div[5]/div[2]//input'
+#    action: click
   - by: xpath
     locator: '//*[@class="body"]/form/div[5]/div[2]//input'
     action: send

@@ -61,6 +61,13 @@ class Add_Exists_Plan(BasePage):
         '''
         return self.step(add_exists_plan_dir,"check_upload_result")
 
+    def check_upload_warn(self):
+        '''
+        检查上传结果,判断“警告信息”是否存在页面中，校驗存在N條警告信息
+        '''
+        return self.step(add_exists_plan_dir,"check_upload_warn")
+
+
     def download_result(self):
         '''
         下載錯誤文件

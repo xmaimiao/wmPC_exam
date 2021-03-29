@@ -6,6 +6,14 @@ goto_add_exam:
     locator: 'return document.getElementsByClassName("we f-14 ml-10 ivu-btn ivu-btn-primary")[0]'
     action: execute_js_click
 
+edit_exam_of_num:
+  - by: xpath
+    locator: 1
+    action: sleep
+  - by: xpath
+    locator: '//div[text()="${num}"]/../../../../td[last()]//div[contains(text(),"編輯")]'
+    action: click
+
 get_plan_name:
   - by: xpath
     locator: '//*[@class="searchLine"]/div[1]/div'
@@ -54,3 +62,23 @@ del_exam:
   - by: xpath
     locator: '//*[@class="ivu-btn ivu-btn-primary ivu-btn-large"]/span'
     action: click
+
+get_invigilate_one:
+  - by: xpath
+    locator: '//div[text()="${num}"]/../../../../td[last()-4]/div/div/div[1]'
+    action: text
+
+get_invigilate_two:
+  - by: xpath
+    locator: '//div[text()="${num}"]/../../../../td[last()-3]/div/div/div[1]'
+    action: text
+
+get_invigilate_three:
+  - by: xpath
+    locator: '//div[text()="${num}"]/../../../../td[last()-2]/div/div/div[1]'
+    action: text
+
+get_invigilate_four:
+  - by: xpath
+    locator: '//div[text()="${num}"]/../../../../td[last()-1]/div/div/div[1]'
+    action: text

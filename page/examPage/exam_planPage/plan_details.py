@@ -7,10 +7,16 @@ from selenium.common.exceptions import NoSuchElementException
 from common.contants import plan_details_dir
 from page.basepage import BasePage
 from page.examPage.exam_planPage.add_exam import Add_Exam
+from page.examPage.exam_planPage.edit_exam import Edit_Exam
 from page.examPage.exam_planPage.exam_studenttable import Exam_Studenttable
 
 
 class Plan_Details(BasePage):
+
+    def wait_sleep(self,sleeps):
+        self.sleep(sleeps)
+        return self
+
     def goto_add_exam(self):
         '''
         点击“添加”按钮
@@ -22,10 +28,22 @@ class Plan_Details(BasePage):
             print('該計劃已結束，沒有“添加"按鈕')
             raise e
 
+    def edit_exam_of_num(self,num):
+        '''
+        通过传入的序号“num“定位编辑第N调数据
+        '''
+        try:
+            self._params["num"] = num
+            self.step(plan_details_dir,"edit_exam_of_num")
+            return Edit_Exam(self._driver)
+        except NoSuchElementException as e:
+            print('該考试已結束，沒有“编辑"按鈕')
+            raise e
+
 
     def get_plan_name(self):
         '''
-        :return: 返回計劃名稱
+        :return: 返回text "當前計劃:"
         '''
         sleep(2)
         try:
@@ -87,4 +105,18 @@ class Plan_Details(BasePage):
             print("該頁面沒有刪除按鈕！")
             raise e
 
+    def get_invigilate(self, num):
+        '''
+        通过参数：计划名称，打开该计划详情
+        '''
+        self._params["num"] = num
+        invigilates={}
+        invigilates["invigilate_one"] = self.step(plan_details_dir, "get_invigilate_one")
+        invigilates["invigilate_two"] = self.step(plan_details_dir, "get_invigilate_two")
+        invigilates["invigilate_three"] = self.step(plan_details_dir, "get_invigilate_three")
+        invigilates["invigilate_four"] = self.step(plan_details_dir, "get_invigilate_four")
+        db = shelve.open("invigilates")
+        db["invigilates"] = invigilates
+        db.close()
+        return self
 

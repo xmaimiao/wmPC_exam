@@ -99,11 +99,14 @@ test_check_upload_exists_plan:
 #54.
 #  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1116計劃1,term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel63.xls,expect: False}
 #bug27725 客戶反饋-不同排考编号，考试时间重叠，学生冲突，上传失败
-  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel67.xls,expect: True }
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel67.xls,expect: True }
 #bug27725扩展 客戶反饋-不同排考编号，考试时间重叠，考室冲突，上传失败
-  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel68.xls,expect: True }
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel68.xls,expect: True }
 #bug27725扩展 客戶反饋-不同排考编号，考试时间重叠，监考员冲突，上传失败
-  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel69.xls,expect: True }
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel69.xls,expect: True }
+
+#使用D01#D02,D03的符號，验证导入成功
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\exists_excel1.xls,expect: False }
 
 test_current_exam_total:
 #14.同排考编号，验证导入成功計劃詳情僅顯示1行，数据1、数据2均有考场
@@ -121,9 +124,12 @@ test_check_add_plan_succeed:
 #44.測試用數據
 #  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃3,term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel44.xls,expect: 當前計劃}
 #52.bug27376
-  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃4,term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel55.xls,expect: 當前計劃 }
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃4,term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel55.xls,expect: 當前計劃 }
 
-
+#2021-03-09后新文件试用
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃4,term: 2009,type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story667_661_771\exists_excel_S2.xls,expect: 當前計劃 }
+#补考，2021-03-09后新文件试用
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃4,term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story667_661_771\makeup_excel1.xls,expect: 當前計劃 }
 
 test_add_exam_same_examCode_pre1:
 #1.同編號考試未開始，默認設置相同考試時間
@@ -159,7 +165,7 @@ test_add_exam:
 #  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,examCode: BL4014-03,course_1: BITM1301,classdata_1: ["DC2","DE2"], roomCode: O304,teacher_1: ["jchen",],
 #      invigilate_one: jchen,examdate: 2020-10-16,examtime: 10:00 - 12:00,expect: 保存成功}
 #添加成功
-  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1120計劃2,examCode: MSB7,course_1: BITM1301,classdata_1: [ "D1"], roomCode: O306,teacher_1: [ "jchen", ],
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 0310計劃4,examCode: MSB7,course_1: BITM1301,classdata_1: [ "D1"], roomCode: O306,teacher_1: [ "jchen", ],
       num: 20,invigilate_one: lliu,examdate: 2020-11-21,examtime: 15:00 - 17:00,expect: 保存成功 }
 #添加成功
 #  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,examCode: BL4014-02,course_1: PES-10,classdata_1: [ "D03"], roomCode: O304,teacher_1: [ "jchen", ],
@@ -167,6 +173,12 @@ test_add_exam:
 #添加成功,注意考試時間不能<當前日期
 #  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/04計劃1,examCode: BL4014-06,course_1: BL4002,classdata_1: [ "D2"],
 #      num: 30,roomCode: O304,teacher_1: [ "jchen", ],invigilate_one: jchen,examdate: 2020-11-30,examtime: 15:00 - 16:00,expect: 保存成功 }
+test_edit_exam_room:
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 测试0326-01,num: 1,roomCode: B303}
+test_edit_exam_date:
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,num: 1,examdate: 2021-04-03,examtime: 08:00 - 10:00}
+test_edit_exam_invigilate_one:
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 0326計劃,num: 2,invigilate_one: 'deke1704'}
 
 test_add_double_exam:
   - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1117計劃2,examCode: BL4014-07,course_1: BDZ1907,classdata_1: [ "D4"],teacher_1: [ "jchen", ],

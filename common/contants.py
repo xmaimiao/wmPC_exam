@@ -24,6 +24,8 @@ plan_details_dir = os.path.join(base_dir,'data/examPage/exam_planPage/plan_detai
 
 add_exam_dir = os.path.join(base_dir,'data/examPage/exam_planPage/add_exam.yaml')
 
+edit_exam_dir = os.path.join(base_dir,'data/examPage/exam_planPage/edit_exam.yaml')
+
 release_undergraduate_plan_dir = os.path.join(base_dir,'data/examPage/exam_planPage/release_undergraduate_plan.yaml')
 
 add_or_edit_room_dir = os.path.join(base_dir,'data/examPage/room_setting/add_or_edit_room.yaml')
@@ -57,6 +59,16 @@ test_bug_all_of_11_11_dir = os.path.join(base_dir,'data/cases/exam/test_bug_all_
 test_story638_dir = os.path.join(base_dir,'data/cases/exam/test_story638.yaml')
 
 test_mo_610_608_638_dir = os.path.join(base_dir,'data/cases/exam/test_mo_610_608_638.yaml')
+
+test_story771_661_667_dir = os.path.join(base_dir,'data/cases/exam/test_story771_661_667.yaml')
+
+test_mo_story771_661_667_dir = os.path.join(base_dir,'data/cases/exam/test_mo_story771_661_667.yaml')
+
+test_story786_787_788_dir = os.path.join(base_dir,'data/cases/exam/test_story786_787_788.yaml')
+
+test_mo_story786_787_788_dir = os.path.join(base_dir,'data/cases/exam/test_mo_story786_787_788.yaml')
+
+test_bug29693_29682_dir = os.path.join(base_dir,'data/cases/exam/test_bug29693_29682.yaml')
 
 
 

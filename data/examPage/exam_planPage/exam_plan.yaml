@@ -3,16 +3,17 @@ get_ele_of_addplan:
     locator: 1
     action: sleep
   - by: xpath
-    locator: '//*[@class="title-bar"]/div/div/button/span/span'
+    locator: '//*[@class="title-bar"]/div/div/button/span/span[contains(text(),"添加已排計劃")]'
     action: text
 
 add_exists_plan:
   - by: xpath
-    locator: '//*[@class="title-bar"]/div/div/button/span/span'
+    locator: '//*[@class="title-bar"]/div/div/button/span/span[contains(text(),"添加已排計劃")]'
     action: wait_click
   - by: xpath
-    locator: '//*[@class="title-bar"]/div/div/button/span/span'
+    locator: '//*[@class="title-bar"]/div/div/button/span/span[contains(text(),"添加已排計劃")]'
     action: click
+
 goto_plan_details:
   - by: xpath
     locator: '//*[contains(text(),"${plan_name}")]'
@@ -47,11 +48,14 @@ simple_search_plan:
 
 goto_release_undergraduate_plan:
   - by: xpath
-    locator: '//*[contains(text(),"${plan_name}")]/../../../../td[last()]//span[contains(text(),"更多")]'
+    locator: '//*[@class="ivu-table-tbody"]/tr[1]/td[last()]//span[contains(text(),"更多")]'
     action: wait
   - by: xpath
-    locator: '//*[contains(text(),"${plan_name}")]/../../../../td[last()]//span[contains(text(),"更多")]'
+    locator: '//*[@class="ivu-table-tbody"]/tr[1]/td[last()]//span[contains(text(),"更多")]'
     action: click
+  - by: xpath
+    locator: '//*[@class="ivu-poptip-popper v-transfer-dom"][1]//div[contains(text(),"本科發佈")]'
+    action: wait_click
   - by: xpath
     locator: '//*[@class="ivu-poptip-popper v-transfer-dom"][1]//div[contains(text(),"本科發佈")]'
     action: click

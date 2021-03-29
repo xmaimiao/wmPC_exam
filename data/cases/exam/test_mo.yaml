@@ -43,12 +43,12 @@ test_add_exam_stu_num:
       num: 1,invigilate_one: test38-test,examdate: 2020-12-01,examtime: 10:00 - 12:00,expect: 3 }
 
 test_add_examroom:
-  - {username: test38-test,password: wemust@prod,application: 考試,room: A101,seatCount: 2,startSn: 6000,faculty: FI,expect: 保存成功}
+  - {username: test38-test,password: wemust@prod,application: 考試,room: B303,seatCount: 2,startSn: 6000,faculty: FI,expect: 保存成功}
 #  - {username: test38-test,password: wemust@prod,application: 考試,room: A104,seatCount: 20,startSn: 6000,faculty: FI,expect: 保存成功}
 #  - {username: test38-test,password: wemust@prod,application: 考試,room: O305,seatCount: 10,startSn: 6000,faculty: FI,expect: 保存成功}
 
 test_delete_examroom:
-  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: A101,expect: 0}
+  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: B03,expect: 0}
 #  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: A104,expect: 0}
 #  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: O305,expect: 0}
 

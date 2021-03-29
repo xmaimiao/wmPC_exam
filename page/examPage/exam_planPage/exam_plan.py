@@ -1,3 +1,5 @@
+import shelve
+
 from selenium.common.exceptions import NoSuchElementException
 
 from common.contants import exam_plan_dir
@@ -37,6 +39,7 @@ class Exam_Plan(BasePage):
             print("排考計劃列表第一頁沒有該計劃")
             raise e
 
+
     def goto_the_first_plan_details(self):
         '''
         打開第一行的計劃，進入計劃詳情
@@ -53,11 +56,19 @@ class Exam_Plan(BasePage):
         self.step(exam_plan_dir,"simple_search_plan")
         return self
 
-    def goto_release_undergraduate_plan_of_the_fir(self,plan_name):
+    # def goto_release_undergraduate_plan_of_the_fir(self,plan_name):
+    #     '''
+    #     1.通過查詢定位到第一條要發佈的計劃，點擊”更多“按鈕
+    #     2.點擊“本科發佈”按鈕
+    #     '''
+    #     self._params["plan_name"] = plan_name
+    #     self.step(exam_plan_dir,"goto_release_undergraduate_plan")
+    #     return Release_Undergraduate_Plan(self._driver)
+
+    def goto_release_undergraduate_plan_of_the_fir(self):
         '''
-        1.通過查詢定位到第一條要發佈的計劃，點擊”更多“按鈕
+        1.定位到第一條要發佈的計劃，點擊”更多“按鈕
         2.點擊“本科發佈”按鈕
         '''
-        self._params["plan_name"] = plan_name
         self.step(exam_plan_dir,"goto_release_undergraduate_plan")
         return Release_Undergraduate_Plan(self._driver)

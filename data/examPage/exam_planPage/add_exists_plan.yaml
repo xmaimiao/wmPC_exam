@@ -30,7 +30,18 @@ upload_exists_plan_import:
 
 check_upload_result:
   - by: xpath
+    locator: 1
+    action: sleep
+  - by: xpath
     locator: '//*[@class="ivu-form-item-error-tip"]'
+    action: ele_status
+
+check_upload_warn:
+  - by: xpath
+    locator: 1
+    action: sleep
+  - by: xpath
+    locator: '//*[contains(text(),"警告信息")]'
     action: ele_status
 
 download_result:

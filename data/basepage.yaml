@@ -14,7 +14,13 @@ docker_env:
 default: mo
 
 #uat密码wemust@Better  正式站：wemust@prod
-dev: {username: test304,password: wemust@dev,application: 考試}
-uat: {username: test38-test,password: wemust*2020,application: 考試}
-mo: {username: test38-test,password: wemust@2020,application: 考試}
+user:
+  dev: {username: test300,password: wemust@dev,application: 加班}
+  uat: {username: test500,password: wemust@Better,application: 加班}
+  mo: {username: test38-test,password: wemust@prod,application: 加班}
+
+sleeps:
+  dev: { viewpage: 5 }
+  uat: { viewpage: 3 }
+  mo: { viewpage: 3 }
 

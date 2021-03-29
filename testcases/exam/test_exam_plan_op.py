@@ -19,33 +19,26 @@ def get_env():
     '''
     with open(basepage_dir, encoding="utf-8") as f:
         datas = yaml.safe_load(f)
-        wm_env = datas["default"]
-        setup_datas = datas[wm_env]
-        return setup_datas
+        # 获取basepage.yaml中设置的环境变量
+        wm_env =  datas["default"]
+        # 根据环境变量取对应的账号和密码
+        user_env = datas["user"][wm_env]
+        # 根据环境变量取对应的睡眠时间
+        sleep_env = datas["sleeps"][wm_env]
+        return user_env,sleep_env
+
+def get_data(option):
+    '''
+    获取yaml测试数据
+    '''
+    with open(test_exam_plan_dir, encoding="utf-8") as f:
+        datas = yaml.safe_load(f)[option]
+        return datas
+
 
 
 class Test_Exam_Plan:
-    with open(test_exam_plan_dir, encoding="utf-8") as f:
-        datas = yaml.safe_load(f)
-        test_check_upload_exists_plan_datas = datas["test_check_upload_exists_plan"]
-        test_check_add_plan_succeed_datas = datas["test_check_add_plan_succeed"]
-        test_current_exam_total_datas = datas["test_current_exam_total"]
-        test_add_exam_same_examCode_pre1_datas = datas["test_add_exam_same_examCode_pre1"]
-        test_add_exam_same_examCode_pre2_datas = datas["test_add_exam_same_examCode_pre2"]
-        test_add_exam_same_examCode_end1_datas = datas["test_add_exam_same_examCode_end1"]
-        test_add_exam_same_examCode_end2_datas = datas["test_add_exam_same_examCode_end2"]
-        test_add_exam_same_examCode_roomCode_datas = datas["test_add_exam_same_examCode_roomCode"]
-        test_add_exam_same_examCode_invigilate_datas = datas["test_add_exam_same_examCode_invigilate"]
-        test_add_exam_same_examCode_update_examdate1_datas = datas["test_add_exam_same_examCode_update_examdate1"]
-        test_add_exam_same_examCode_update_examdate2_datas = datas["test_add_exam_same_examCode_update_examdate2"]
-        test_add_exam_datas = datas["test_add_exam"]
-        test_add_double_exam_datas = datas["test_add_double_exam"]
-        test_del_exam_plan_datas = datas["test_del_exam_plan"]
-        test_del_exam_datas = datas["test_del_exam"]
-        test_add_exam_type_datas = datas["test_add_exam_type"]
-        test_add_double_exam_type_datas = datas["test_add_double_exam_type"]
-        test_release_undergraduate_plan_for_date_datas = datas["test_release_undergraduate_plan_for_date"]
-        test_release_undergraduate_plan_all_datas = datas["test_release_undergraduate_plan_all"]
+
     _now_time = datetime.datetime.now()
     _setup_datas = get_env()
     _working = _get_working()
@@ -61,9 +54,9 @@ class Test_Exam_Plan:
             非調試端口用
             '''
             self.main = Main().goto_login(). \
-                username(self._setup_datas["username"]).password(self._setup_datas["password"]).save(). \
+                username(self._setup_datas[0]["username"]).password(self._setup_datas[0]["password"]).save(). \
                 goto_application(). \
-                goto_exam(self._setup_datas["application"])
+                goto_exam(self._setup_datas[0]["application"])
 
         def teardown_class(self):
             '''
@@ -71,7 +64,7 @@ class Test_Exam_Plan:
             '''
             self.main.close()
 
-    @pytest.mark.parametrize("data", test_check_upload_exists_plan_datas)
+    @pytest.mark.parametrize("data", get_data("test_check_upload_exists_plan"))
     def test_check_upload_exists_plan(self, data):
         '''
         验证上传已排计划
@@ -85,7 +78,7 @@ class Test_Exam_Plan:
             check_upload_result()
         assert result == data["expect"]
 
-    @pytest.mark.parametrize("data", test_check_add_plan_succeed_datas)
+    @pytest.mark.parametrize("data", get_data("test_check_add_plan_succeed"))
     def test_check_add_plan_succeed(self, data):
         '''
         验证添加計劃成功
@@ -93,14 +86,15 @@ class Test_Exam_Plan:
 
         result = self.main.goto_exam_plan().\
             add_exists_plan().\
-            plan_name(self._now_time.strftime('%m%d')+data["plan_name"]).term(data["term"]).\
-            upload_exists_plan_import(data["excel_path"]).\
+            plan_name(self._now_time.strftime('%m%d')+data["plan_name"]).term(data["term"]). \
+            exam_type(data["type"]). \
+            upload_exists_plan_import(data["excel_path"]). \
             download_result().\
             goto_plan_details().\
             get_plan_name()
-        assert data["expect"] in result
+        assert "當前計劃:" in result
 
-    @pytest.mark.parametrize("data", test_current_exam_total_datas)
+    @pytest.mark.parametrize("data", get_data("test_current_exam_total"))
     def test_current_exam_total(self,data):
         '''
         验证当前页考试科目行数
@@ -113,7 +107,7 @@ class Test_Exam_Plan:
             get_current_exam_total()
         assert result == data["expect"]
 
-    @pytest.mark.parametrize("data", test_add_exam_same_examCode_pre1_datas)
+    @pytest.mark.parametrize("data", get_data("test_add_exam_same_examCode_pre1"))
     def test_add_exam_same_examCode_pre1(self,data):
         '''
         验证同排考編號考試時間自動同步，考試未開始
@@ -134,7 +128,7 @@ class Test_Exam_Plan:
         assert data["expect"] == result
 
 
-    @pytest.mark.parametrize("data", test_add_exam_same_examCode_pre2_datas)
+    @pytest.mark.parametrize("data", get_data("test_add_exam_same_examCode_pre2"))
     def test_add_exam_same_examCode_pre2(self, data):
         # 在驗證創建同排考編號的科目B其日期和時間同步設置
         result = self.main.goto_exam_plan(). \
@@ -145,7 +139,7 @@ class Test_Exam_Plan:
             click_save_same_examCode().check_add_succeed()
         assert data["expect"] == result
 
-    @pytest.mark.parametrize("data", test_add_exam_same_examCode_end1_datas)
+    @pytest.mark.parametrize("data", get_data("test_add_exam_same_examCode_end1"))
     def test_add_exam_same_examCode_end1(self, data):
         '''
         验证添加同排考編號科目，考試已結束提示：
@@ -166,7 +160,7 @@ class Test_Exam_Plan:
             add_grade(data["grade"]).click_save().check_add_succeed()
         assert data["expect"] == result1
 
-    @pytest.mark.parametrize("data", test_add_exam_same_examCode_end2_datas)
+    @pytest.mark.parametrize("data", get_data("test_add_exam_same_examCode_end2"))
     def test_add_exam_same_examCode_end2(self, data):
         '''
         验证提示：
@@ -180,7 +174,7 @@ class Test_Exam_Plan:
             get_same_examCode_end_toast()
         assert data["expect"] in result2
 
-    @pytest.mark.parametrize("data", test_add_exam_same_examCode_roomCode_datas)
+    @pytest.mark.parametrize("data", get_data("test_add_exam_same_examCode_roomCode"))
     def test_add_exam_same_examCode_roomCode(self,data):
         '''
         驗證同排考編號科目，考場不可相同
@@ -194,7 +188,7 @@ class Test_Exam_Plan:
             click_save_same_examCode().check_add_failed()
         assert data["expect"] in result
 
-    @pytest.mark.parametrize("data", test_add_exam_same_examCode_invigilate_datas)
+    @pytest.mark.parametrize("data", get_data("test_add_exam_same_examCode_invigilate"))
     def test_add_exam_same_examCode_invigilate(self,data):
         '''
         驗證同排考編號科目，考場不同，監考員不可相同
@@ -208,7 +202,7 @@ class Test_Exam_Plan:
             click_save_same_examCode().check_add_failed()
         assert data["expect"] in result
 
-    @pytest.mark.parametrize("data", test_add_exam_same_examCode_update_examdate1_datas)
+    @pytest.mark.parametrize("data", get_data("test_add_exam_same_examCode_update_examdate1"))
     def test_add_exam_same_examCode_update_examdate1(self,data):
         '''
         验证同排考編號考試時間更改后自動同步
@@ -224,7 +218,7 @@ class Test_Exam_Plan:
             add_grade(data["grade"]).click_save().check_add_succeed()
         assert data["expect"] == result
 
-    @pytest.mark.parametrize("data", test_add_exam_same_examCode_update_examdate2_datas)
+    @pytest.mark.parametrize("data", get_data("test_add_exam_same_examCode_update_examdate2"))
     def test_add_exam_same_examCode_update_examdate2(self, data):
         '''
         验证同排考編號科目B，考試時間更改后自動同步科目A
@@ -241,7 +235,7 @@ class Test_Exam_Plan:
             get_same_examdate_courses(data["examdate"])
         assert data["expect"] == result
 
-    @pytest.mark.parametrize("data", test_add_exam_datas)
+    @pytest.mark.parametrize("data", get_data("test_add_exam"))
     def test_add_exam(self, data):
         '''
         验证添加考試科目
@@ -256,7 +250,7 @@ class Test_Exam_Plan:
             click_save().check_add_succeed()
         assert data["expect"] == result
 
-    @pytest.mark.parametrize("data", test_add_double_exam_datas)
+    @pytest.mark.parametrize("data", get_data("test_add_double_exam"))
     def test_add_double_exam(self,data):
         '''
         一次添加兩門科目
@@ -272,20 +266,8 @@ class Test_Exam_Plan:
             click_save().check_add_succeed()
         assert data["expect"] == result
 
-    @pytest.mark.parametrize("data", test_add_double_exam_datas)
-    def test_studenttable_courseCode(self,data):
-        '''
-        改寫未完，不可用
-        1.驗證學生清單裏科課程已改爲：科目
-        2.驗證學生清單裏科目字段顯示為科目編號
-        '''
-        exam_title = self.main.goto_exam_plan(). \
-            goto_the_first_plan_details().\
-            goto_the_first_exam_studenttable().\
-            get_exam_title()
-        assert data["expect"] == exam_title
 
-    @pytest.mark.parametrize("data", test_del_exam_plan_datas)
+    @pytest.mark.parametrize("data", get_data("test_del_exam_plan"))
     def test_del_exam_plan(self,data):
         '''
         驗證刪除考試計劃
@@ -295,7 +277,7 @@ class Test_Exam_Plan:
             del_plan().get_ele_of_addplan()
         assert result == data["expect"]
 
-    @pytest.mark.parametrize("data", test_del_exam_datas)
+    @pytest.mark.parametrize("data", get_data("test_del_exam"))
     def test_del_exam(self,data):
         '''
         驗證刪除考試
@@ -308,7 +290,7 @@ class Test_Exam_Plan:
         db.close()
         assert result == int(before_exam_total) - 1
 
-    @pytest.mark.parametrize("data", test_add_exam_type_datas)
+    @pytest.mark.parametrize("data", get_data("test_add_exam_type"))
     def test_add_exam_type(self, data):
         '''
         驗證添加單門科目，考試形式為：閉卷，工具全部
@@ -324,7 +306,48 @@ class Test_Exam_Plan:
             click_save().check_add_succeed()
         assert data["expect"] == result
 
-    @pytest.mark.parametrize("data", test_add_double_exam_type_datas)
+    @pytest.mark.parametrize("data", get_data("test_edit_exam_room"))
+    def test_edit_exam_room(self, data):
+        '''
+        驗證编辑單門科目,编辑课室
+        '''
+        result = self.main.goto_exam_plan(). \
+            goto_plan_details(data["plan_name"]). \
+            edit_exam_of_num(data["num"]). \
+            wait_sleep(1).\
+            edit_roomCode(data["roomCode"]). \
+            click_save().check_edit_succeed()
+        assert "保存成功" == result
+
+    @pytest.mark.parametrize("data", get_data("test_edit_exam_date"))
+    def test_edit_exam_date(self, data):
+        '''
+        驗證编辑單門科目,编辑考试时间
+        '''
+        result = self.main.goto_exam_plan(). \
+            goto_plan_details(data["plan_name"]). \
+            edit_exam_of_num(data["num"]). \
+            wait_sleep(1). \
+            edit_examdate(data["examdate"]). \
+            edit_examtime(data["examtime"]).\
+            click_save().check_edit_succeed()
+        assert "保存成功" == result
+
+    @pytest.mark.parametrize("data", get_data("test_edit_exam_invigilate_one"))
+    def test_edit_exam_invigilate_one(self, data):
+        '''
+        驗證编辑單門科目,编辑考试时间
+        '''
+        result = self.main.goto_exam_plan(). \
+            goto_plan_details(data["plan_name"]). \
+            wait_sleep(1).get_invigilate(data["num"]).\
+            edit_exam_of_num(data["num"]). \
+            wait_sleep(1). \
+            edit_invigilate_one(data["invigilate_one"]). \
+            click_save().check_edit_succeed()
+        assert "保存成功" == result
+
+    @pytest.mark.parametrize("data", get_data("test_add_double_exam_type"))
     def test_add_double_exam_type(self, data):
         '''
         驗證添加雙門科目，科目一、二考試形式為：閉卷，工具全部
@@ -344,7 +367,7 @@ class Test_Exam_Plan:
             click_save().check_add_succeed()
         assert data["expect"] == result
 
-    @pytest.mark.parametrize("data", test_release_undergraduate_plan_for_date_datas)
+    @pytest.mark.parametrize("data", get_data("test_release_undergraduate_plan_for_date"))
     def test_release_undergraduate_plan_for_date(self, data):
         '''
         驗證根據考試日期發佈本科計劃
@@ -357,7 +380,7 @@ class Test_Exam_Plan:
             click_release().get_ele_of_addplan()
         assert data["expect"] == result
 
-    @pytest.mark.parametrize("data", test_release_undergraduate_plan_all_datas)
+    @pytest.mark.parametrize("data", get_data("test_release_undergraduate_plan_all"))
     def test_release_undergraduate_plan_all(self, data):
         '''
         驗證發佈本科計劃-全部
@@ -368,5 +391,20 @@ class Test_Exam_Plan:
             wait_sleep(1).release_all().\
             teacher_view_date(data["date_t"]).student_view_date(data["date_t"]).\
             click_release().get_ele_of_addplan()
+        assert data["expect"] == result
+
+    @pytest.mark.parametrize("data", get_data("test_release_undergraduate_plan_all"))
+    def test_release_undergraduate_plan_all(self, data):
+        '''
+        驗證發佈本科計劃-全部
+        '''
+        result = self.main.goto_exam_plan(). \
+            goto_plan_details(data["plan_name"]). \
+            goto_add_exam(). \
+            add_examCode(data["examCode"]).add_course_1(data["course_1"]). \
+            add_teacher_1(data["teacher_1"]).add_class_1(data["classdata_1"]).add_student_exam(data["num"]).\
+            add_examdate(data["examdate"]).add_examtime(data["examtime"]). \
+            add_roomCode(data["roomCode"]).add_invigilate_one(data["invigilate_one"]).\
+            click_save().check_add_succeed()
         assert data["expect"] == result
 

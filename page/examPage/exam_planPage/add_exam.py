@@ -204,7 +204,7 @@ class Add_Exam(BasePage):
 
     def add_examdate(self,examdate):
         '''
-        添加考试日期，不同排考科目編號使用
+        添加考试日期，不同排考科目編號使用，注意：日期》=当前日期
         :param date: 日期，yyyy-mm-dd
         '''
         self._params["examdate"] =examdate
@@ -213,7 +213,7 @@ class Add_Exam(BasePage):
 
     def add_examdate_same_examCode(self,examdate):
         '''
-        添加考试日期,同排考編號和睦用
+        添加考试日期,同排考編號和睦用，注意：日期》=当前日期
         :param date: 日期，yyyy-mm-dd
         '''
         self._params["examdate"] =examdate
@@ -342,7 +342,7 @@ class Add_Exam(BasePage):
         result = self.step(add_exam_dir, "check_add_failed")
         print(f"添加考試保存失敗：{result}")
         self.step(add_exam_dir, "click_close")
-        return result
+        return "保存失敗"
 
     def get_same_examCode_end_toast(self):
         '''
