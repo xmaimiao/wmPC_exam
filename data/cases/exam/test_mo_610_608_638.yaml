@@ -1,0 +1,29 @@
+test_add_examroom:
+  - {username: test38-test,password: wemust@prod,application: 考試,room: A102,seatCount: 2,faculty: FI,expect: 保存成功}
+  - {username: test38-test,password: wemust@prod,application: 考試,room: A104,seatCount: 2,faculty: FI,expect: 保存成功}
+  - {username: test38-test,password: wemust@prod,application: 考試,room: O305,seatCount: 10,faculty: FI,expect: 保存成功}
+
+test_delete_examroom:
+  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: A101,expect: 0}
+  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: A104,expect: 0}
+  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: O305,expect: 0}
+
+test_check_add_plan_succeed:
+#1.上傳補考計劃成功，前端顯示正常
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 補考計劃1,
+     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\mo_makeup1.xls,expect: 當前計劃}
+#2.同排考編號科目，考試形式可以不同
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 期末計劃1,
+#     term: 2009,type: 期末考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\mo_excel7.xls,expect: 當前計劃}
+
+test_student_del_or_T_style:
+#1.移除學生17098533-B411-0029 考試計劃61
+  - {username: test38-test,password: wemust@prod,application: 考試,user_s: 20200701-202007-01,expect: False}
+
+test_check_upload_exists_plan:
+#1.移除學生后考試人數不變，且參與校驗，上傳失敗，學生衝突
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+#     type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\mo_excel6.xls,expect: True}
+#2.移除學生后考試人數不變，且參與校驗，上傳失敗，學生衝突
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+     type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\mo_excel8.xls,expect: True}

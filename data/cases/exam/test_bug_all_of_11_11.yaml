@@ -1,0 +1,32 @@
+#uat密码wemust@Better  正式站：wemust@prod
+dev: {username: test304,password: wemust@dev,application: 考試}
+uat: {username: mai2,password: wemust*2020,application: 考試}
+mo: {username: test38-test,password: wemust@prod,application: 考試}
+#测试之前确保计划之间的冲突，最好删除其他考试计划
+
+test_check_add_plan_succeed:
+#1.bug27419_1修复不同考室时间监考员相同，点击保存会报错的问题
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1111計劃1,type: 期末考試,
+#      term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\bug27419_1.xls,expect: 當前計劃 }
+#2.bug27419_2修复不同考室时间考室相同，点击保存会报错的问题
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1111計劃1,type: 期中考試,
+      term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\bug27419_2.xls,expect: 添加已排計劃 }
+#3.bug27419_3验证客户文件没问题
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1111計劃1,type: 期末考試,
+#      term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\bug27419_3.xls,expect: 當前計劃 }
+
+test_check_upload_exists_plan:
+#1.bug27383  D10系統識別成D010,D11系統是存在學生的，但提示有誤等問題
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1004計劃1,type: 期中考試,
+#      term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\bug27383.xls,expect: False}
+#2.bug27376 班別學生重疊，同時間考試沒有出現錯誤提示
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1004計劃1,type: 期中考試,
+#      term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\bug27376.xls,expect: True }
+#3.bug27432  日期格式 2020-01-01、2021/01/01
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1004計劃1,type: 期中考試,
+#      term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\bug27432_1.xls,expect: False }
+#4.bug27432  日期格式 2020-01-01jkjj，報錯
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1004計劃1,type: 期中考試,
+      term: 2009,excel_path: D:\PycharmProjects\wmPC_exam\excel\bug27432_1.xls,expect: True }
+
+

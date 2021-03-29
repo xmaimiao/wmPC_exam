@@ -1,0 +1,33 @@
+test_check_upload_exists_plan:
+#1.bug27488 導入已排計劃，同排考編號不同考試時間，也導入成功了
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃3,term: 2009,
+#      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel64.xls,expect: True }
+#2021-03-08测试排靠前设置为S，该学生参与补考
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+      type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\story667_story661\makeup_excel1.xls,expect: True }
+test_check_add_plan_succeed:
+#1.同排考編號不同科目，考試形式不同  #同排考編號同一科目，不同班別，考試形式不同（依賴A102,100座；A104，90座，B303）
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+#      type: 期末考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel65.xls,expect: 當前計劃 }
+#2.同科目考試座位不夠分配其他考室，班別為D1#D2 ,  D3
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+#      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel66.xls,expect: 當前計劃 }
+
+#2021-03-08测试排靠前设置为T，不同科目同一学生同一时间排考成功
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\story667_story661\exists_excel_T1.xls,expect: 當前計劃 }
+
+test_del_exam_plan:
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1117計劃2,expect: 添加已排計劃 }
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 1120補考計劃1,expect: 添加已排計劃 }
+
+test_add_exam_same_examCode:
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃2,examCode: MSB6,course_1: BHM1257,
+     classdata_1: ["DE2"], teacher_1: ["jchen",],invigilate_one: cpang,grade: 1,expect: 保存成功}
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 1117計劃2,examCode: MSB8,course_1: BAAZ09,
+#     classdata_1: ["D1"], teacher_1: ["jchen",],invigilate_one: cpang,grade: 1,expect: 保存成功}
+
+test_add_exam:
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 0309計劃1,examCode: MSB8,
+      course_1: CE102,classdata_1: [ "D2"], roomCode: A104,teacher_1: [ "jchen", ],
+      num: 20,invigilate_one: lliu,examdate: 2021-01-03,examtime: 15:00 - 17:00,expect: 保存成功 }

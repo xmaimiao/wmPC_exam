@@ -1,0 +1,73 @@
+test_check_upload_warn_786:
+#同一科目不同排考编号，相同班别，不同时间，有警告信息
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel786_1.xls}
+#同一科目不同排考编号，重叠班别，不同时间，有警告信息,有错误信息（考场不足）
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel786_2.xls}
+
+test_check_add_plan_succeed_786_1:
+#同一科目不同排考编号，不同班别，同一时间pass
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel786_4.xls}
+
+test_check_add_plan_succeed_786_2:
+#同一科目相同排考编号，相同时间相同班别允许不同考室pass  #1709853G-B011-0540设置为T
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel786_5.xls}
+
+test_T_787_1:
+#1709853G-B011-0540设置为T
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,user_s: 1709853G-B011-0540,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel786_5.xls}
+
+test_T_787_2:
+#1809853K-B011-0040设置为T
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,user_s: 1809853K-B011-0040,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel787_1.xls}
+
+test_check_upload_error_788:
+#设置为Y，科目A排考，班别D1，考试时间与科目A，班别D1上课时间冲突
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel788_1.xls}
+#设置为Y，科目A排考，班别D1，考试时间与科目B，班别DN上课时间冲突。
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel788_3.xls}
+#设置为Y，科目A排考，班别D1#D3，考试时间与科目B，班别DN上课时间冲突。
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel788_4.xls}
+
+test_check_upload_warn_788:
+#设置为N，科目A排考，班别D1，考试时间与科目A，班别D1上课时间不冲突
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel788_2.xls }
+#设置为N，科目A排考，班别D1#D3，考试时间与科目B，班别DN上课时间不冲突
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel788_5.xls }
+
+test_add_exam_788:
+#添加科目A，班别D1·D3，考试时间与科目B，班别DN上课时间冲突
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2102,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel788_6.xls,
+  plan: 計劃,examCode: BL4014-2,course_1: BAFZ05,teacher_1: [ "pyyan", ],classdata_1: [ "D2"],examdate: 2021-03-31,examtime: 15:00 - 17:00,}
+#bug添加科目，校验学生同一时间考试冲突失败
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2102,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel788_6.xls,
+  plan: 計劃,examCode: BL4014-2,course_1: BAFZ05,teacher_1: [ "pyyan", ],classdata_1: [ "D2"],examdate: 2021-03-27,examtime: 19:00 - 21:00,}
+
+test_check_difnum_the_same_room:
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel788_8.xls,
+      plan: 計劃,examCode: BL4014-2,course_1: BITM1318,teacher_1: [ "pyyan", ],classdata_1: [ "DE5" ],
+      roomCode: B303,examdate: 2021-04-01,examtime: 19:00 - 21:00, }
+
+test_add_exam_same_examCode_roomCode:
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel788_8.xls,
+      plan: 計劃,examCode: BL4014-1,course_1: BITM1318,teacher_1: [ "pyyan", ],classdata_1: [ "DE5" ],
+      roomCode: B303, }
+
+test_upload_and_edit_exam:
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel788_9.xls,
+      plan: 計劃,examCode: BL4014-1,num: 4,roomCode: B303, }

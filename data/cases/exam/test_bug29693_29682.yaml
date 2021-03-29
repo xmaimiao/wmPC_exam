@@ -1,0 +1,32 @@
+test_check_add_plan_succeed_29693:
+#设置为Y，学生16098533-C111-0014设置为S（旁听），验证不参与上课时间冲突校验，无错误 ，上课时间9：00~18：00
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2102,
+#      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\bug29693_29682\exists_excel_bug29693_YS.xls}
+#设置为N，学生16098533-C111-0014设置为S（旁听），验证不参与上课时间冲突校验，无警告 ，上课时间9：00~18：00
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2102,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\bug29693_29682\exists_excel_bug29693_NS.xls }
+
+test_add_exam_succeed:
+#学生16098533-C111-0014设置为S（旁听），验证添加科目不参与上课时间冲突校验  上课时间9：00~18：00
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2102,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\bug29693_29682\exists_excel_bug29693_1.xls,
+      examCode: BL4014-2,course_1: BC2042,teacher_1: [ "pyyan", ],classdata_1: [ "D1"],examdate: 2021-03-27,examtime: 15:00 - 17:00,}
+
+test_add_exam_failed:
+#学生19098537-B011-0491设置为S（旁听），BBAZ16016 D1上课时间10:10~12:50,  与科目B冲突上课时间26日，15:10~17:30
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2102,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\bug29693_29682\exists_excel_bug29682_1.xls,
+      plan: 計劃,examCode: BL4014-2,course_1: BBAZ16016,teacher_1: [ "pyyan", ],classdata_1: [ "D1" ],examdate: 2021-03-26,examtime: 15:00 - 17:00, }
+#学生19098537-B011-0491设置为S（旁听），BBAZ16016 D1上课时间10:10~12:50,  与本身冲突冲突
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2102,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\bug29693_29682\exists_excel_bug29682_1.xls,
+      plan: 計劃,examCode: BL4014-2,course_1: BBAZ16016,teacher_1: [ "pyyan", ],classdata_1: [ "D1" ],examdate: 2021-03-26,examtime: 10:00 - 12:00, }
+
+#  mo
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\bug29693_29682\exists_excel_mo_bug29682_1.xls,
+      plan: 計劃,examCode: BL4014-2,course_1: BFP12013-TEST2,teacher_1: [ "pyyan", ],classdata_1: [ "D4-2-TEST" ],examdate: 2021-03-27,examtime: 19:00 - 23:00, }
+
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\bug29693_29682\exists_excel_mo_bug29682_1.xls,
+      plan: 計劃,examCode: BL4014-2,course_1: BFP12013-TEST2,teacher_1: [ "pyyan", ],classdata_1: [ "D4-2-TEST" ],examdate: 2021-03-28,examtime: 19:00 - 23:00, }

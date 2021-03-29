@@ -1,0 +1,23 @@
+#注意检查正式站下载模板，检查学院查询条件，检查翻译
+test_check_upload_error_788:
+#设置为Y，科目A排考，班别D1，考试时间与科目A，班别D1上课时间冲突
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel_mo788_1.xls}
+
+test_check_upload_warn_788:
+#设置为null，科目A排考，班别D1，考试时间与科目A，班别D1上课时间冲突，仅警告
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel_mo788_2.xls }
+
+test_check_add_plan_succeed:
+#验证发布成功
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel_mo788_2.xls}
+
+#测试前置-添加房间
+test_add_examroom:
+  - {username: test38-test,password: wemust@prod,application: 考試,room: B303,seatCount: 2,startSn: 6000,faculty: FI,expect: 保存成功}
+#测试后置-删除房间
+test_delete_examroom:
+  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: B303,expect: 0}
+

@@ -1,0 +1,152 @@
+edit_examdate:
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[4]/div[1]//i[@class="ivu-icon ivu-icon-ios-calendar-outline"]'
+    action: move
+  - by: xpath
+    locator: 1
+    action: sleep
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[4]/div[1]//i[@class="ivu-icon ivu-icon-ios-close-circle"]'
+    action: click
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[4]/div[1]//input[@class="ivu-input ivu-input-default ivu-input-with-suffix"]'
+    action: send
+    value: ${examdate}
+
+edit_examtime:
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[4]/div[2]//i[@class="ivu-icon ivu-icon-ios-time-outline"]'
+    action: move
+  - by: xpath
+    locator: 1
+    action: sleep
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[4]/div[2]//i[@class="ivu-icon ivu-icon-ios-close-circle"]'
+    action: click
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[4]/div[2]//input[@class="ivu-input ivu-input-default ivu-input-with-suffix"]'
+    action: send
+    value: ${examtime}
+
+is_hasroom:
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[5]//input[@class="ivu-select-input"]'
+    action: wait_display
+
+clear_roomCode:
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[5]//i[@class="ivu-icon ivu-icon-ios-arrow-down ivu-select-arrow"]'
+    action: move
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[5]//i[@class="ivu-icon ivu-icon-ios-close-circle ivu-select-arrow"]'
+    action: click
+
+edit_roomCode:
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[5]//input[@class="ivu-select-input"]'
+    action: click
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[5]//input[@class="ivu-select-input"]'
+    action: clear
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[5]//input[@class="ivu-select-input"]'
+    action: send
+    value: ${roomCode}
+  - by: xpath
+    locator: 1
+    action: sleep
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[5]/div//ul[2]/li[1]'
+    action: click
+
+delete_invigilate_one:
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[6]/div[1]/div//span'
+    action: click
+
+edit_invigilate_one:
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[6]/div[1]//input[@class="input-people"]'
+    action: send
+    value: ${invigilate_one}
+  - by:
+    locator: 1
+    action: sleep
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[6]/div[1]/div//ul/li[1]'
+    action: click
+
+delete_invigilate_two:
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[6]/div[2]/div//span'
+    action: click
+
+edit_invigilate_two:
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[6]/div[2]//input[@class="input-people"]'
+    action: send
+    value: ${invigilate_two}
+  - by: xpath
+    locator: 1
+    action: sleep
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[6]/div[2]/div//ul/li[1]'
+    action: click
+
+delete_invigilate_three:
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[7]/div[1]/div//span'
+    action: click
+
+edit_invigilate_three:
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[7]/div[1]//input[@class="input-people"]'
+    action: send
+    value: ${invigilate_noe}
+  - by: xpath
+    locator: 1
+    action: sleep
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[7]/div[1]/div//ul/li[1]'
+    action: click
+
+delete_invigilate_four:
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[7]/div[2]/div//span'
+    action: click
+
+edit_invigilate_four:
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[7]/div[2]//input[@class="input-people"]'
+    action: send
+    value: ${invigilate_four}
+  - by: xpath
+    locator: 1
+    action: sleep
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[7]/div[2]/div//ul/li[1]'
+    action: click
+
+click_save:
+#點擊兩次，第一次點擊收起其他展開的下拉框
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[last()]/button[1]/span/span'
+    action: click
+  - by: xpath
+    locator: '//*[@class="drawer-title" and contains(text(),"編輯")]/../div[2]//form/div[last()]/button[1]/span/span'
+    action: action_click
+    
+check_edit_succeed:
+  - by: xpath
+    locator: '//*[@class="f-24 mt-30"]'
+    action: text
+
+check_edit_failed:
+  - by: xpath
+    locator: '//*[@class="mt-30 f-14"]'
+    action: text
+
+click_close:
+  - by: xpath
+    locator: '//*[@class="ivu-drawer-wrap we-drawer"]//i[@class="ivu-icon ivu-icon-md-close"]'
+    action: click

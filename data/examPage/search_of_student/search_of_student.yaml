@@ -1,0 +1,46 @@
+simple_search_student:
+#定位input框並輸入值
+  - by: xpath
+    locator: '//*[@class="searchBox"]/div//input'
+    action: wait
+  - by: xpath
+    locator: '//*[@class="searchBox"]/div//input'
+    action: click
+  - by: xpath
+    locator: '//*[@class="searchBox"]/div//input'
+    action: clear
+  - by: xpath
+    locator: '//*[@class="searchBox"]/div//input'
+    action: send
+    value: ${user_s}
+
+#點擊查詢icon
+  - by: xpath
+    locator: '//*[@class="searchBox"]/div/div/i[1]'
+    action: click
+
+get_the_fir_username_style:
+  - by: xpath
+    locator: '//*[contains(text(),"${user_s}")]/../../../../../tr[1]/td[2]/div/div/div'
+    action: wait_display
+
+del_the_fir_student:
+#定位刪除按鈕，點擊刪除按鈕
+  - by: xpath
+    locator: '//*[contains(text(),"${user_s}")]/../../../../td[last()]//span'
+    action: wait_click
+  - by: xpath
+    locator: '//*[contains(text(),"${user_s}")]/../../../../td[last()]//span'
+    action: click
+#點擊二次”確認“按鈕
+  - by: xpath
+    locator: '//*[@class="ivu-btn ivu-btn-primary ivu-btn-large"]/span'
+    action: wait_click
+  - by: xpath
+    locator: '//*[@class="ivu-btn ivu-btn-primary ivu-btn-large"]/span'
+    action: click
+
+get_the_fir_del_button:
+  - by: xpath
+    locator: '//*[contains(text(),"${user_s}")]/../../../../../tr[1]/td[last()]//span'
+    action: ele_status

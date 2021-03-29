@@ -1,0 +1,115 @@
+#测试之前确保计划之间的冲突，最好删除其他考试计划
+
+test_check_upload_exists_plan:
+#1.同科目班別的考生寫在兩行，報錯pass
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10補考計劃1,
+#     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam01.xls,expect: True}
+#2.同排考编号必須相同的考試時間pass
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10補考計劃1,
+#     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam02.xls,expect: False}
+#3.同排考编号不相同的考試時間，報錯pass
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10補考計劃1,
+#     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam03.xls,expect: True}
+#4.同排考编号不同科目同一學生相同考場，報錯pass
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10補考計劃1,
+#     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam04.xls,expect: True}
+#5.同排考编号不同科目同一學生不同考場，報錯pass
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10補考計劃1,
+#     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam05.xls,expect: True}
+#6.考場容量充足成功，uat需要創建教室A102 22
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10補考計劃1,
+#     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam06.xls,expect: False}
+#7.考場容量不足失敗 uat需要創建教室A104 21
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10補考計劃1,
+#     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam07.xls,expect: True}
+##8.监考员>4报错
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10補考計劃1,
+#     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam08.xls,expect: True}
+#9.监考员總數量=0失敗，這裏指考室監考員總人數pass
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10補考計劃1,
+#     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam09.xls,expect: True}
+#10.监考员數量=0（行），導入失敗 pass
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10補考計劃1,
+#     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam10.xls,expect: True}
+#11.监考员<4成功（監考員重叠）PASS
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10補考計劃1,
+#     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam11.xls,expect: False}
+#12.不同科目同一个学生，不同排考編號不同考試時間导入成功 PASS
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10補考計劃1,
+#     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam12.xls,expect: False}
+#13.同科目同一个学生，不同排考編號不同考試時間导入成功 PASS
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10補考計劃1,
+#     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam13.xls,expect: False}
+#14.學生和科目編號/班別對不上导入失敗
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10補考計劃1,
+#     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam14.xls,expect: True}
+#15.考場爲空导入失敗
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10補考計劃1,
+#     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam15.xls,expect: True}
+#16.移除學生后仍需要校验17098533-B411-0029  考試計劃61
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/12補考計劃1,
+     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam18.xls,expect: True}
+#17.补考前设置为T,上傳補考計劃后不顯示該學生 1709853D-B411-0029
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/12補考計劃1,
+#     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam19.xls,expect: 當前計劃}
+
+test_del_exam_plan:
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 1004計劃1,expect: 添加已排計劃}
+
+test_check_add_plan_succeed:
+#1.同一个科目同一个班别多个学生，列表只显示该科目一个班别（去重）
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 補考計劃1,
+     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam11.xls,expect: 當前計劃}
+#2.其他计划添加/编辑考试科目冲突，已存在考試計劃61（前提，不單獨執行）+ bug27424 学生考试app，补考的数据授课老师要去重
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 考試計劃61,
+#     term: 2009,type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel61.xls,expect: 當前計劃}
+#4.上傳數據>10的考試計劃，驗證考室排序 pass
+#  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 考試計劃63,
+#     term: 2009,type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel63.xls,expect: 當前計劃}
+
+test_check_upload_exists_plan_makeup:
+#1（-補考11）.與補考同考试时间，考室冲突，無監考員 PASS
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10考試計劃1,
+     term: 2009,type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel58.xls,expect: True}
+#2（-補考11）.與補考同考试时间，监考员冲突，無考場 PASS
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10考試計劃1,
+     term: 2009,type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel59.xls,expect: True}
+#3（-補考11）.與補考同考试时间，学生冲突，無考場，無監考員 PASS
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 11/10考試計劃1,
+     term: 2009,type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel60.xls,expect: True}
+
+test_add_exam1:
+#1（-計劃61）.與添加補考的衝突，考室冲突，無監考員，會報錯 PASS
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 考試計劃61,examCode: BL4014-03,course_1: BITM1301,classdata_1: ["DC2"], roomCode: A102,teacher_1: ["jchen",],
+      num: 10,examdate: 2020-11-25,examtime: 10:00 - 12:00,expect: 考室}
+test_add_exam2:
+#2（-計劃61）.與添加補考的衝突，监考员冲突，無考場，會報錯 PASS
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 考試計劃61,examCode: BL4014-03,course_1: BITM1301,classdata_1: [ "DC2"],teacher_1: [ "jchen", ],
+      num: 10,invigilate_one: pyyan,examdate: 2020-11-25,examtime: 10:00 - 12:00,expect: 監考員 }
+test_add_exam3:
+#3（-補考11）.與補考同考试时间，学生冲突，無考場，無監考員 PASS
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 考試計劃61,examCode: BL4014-03,course_1: GSH022,classdata_1: [ "D01",], teacher_1: [ "jchen", ],
+      examdate: 2020-11-25,examtime: 10:00 - 12:00,expect: 學生 }
+
+test_check_add_plan_fail:
+#1.bug27434 補考導入計劃的模板，保存報錯
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 考試計劃42,
+     term: 2009,type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\exists_excel42.xls,expect: 导入excel模板错误}
+#2.bug27434 計劃導入補考的模板，保存報錯
+  - {username: test38-test,password: wemust@prod,application: 考試,plan_name: 考試計劃42,
+     term: 2009,type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\makeup_exam06.xls,expect: 导入excel模板错误}
+
+test_student_for_del:
+#1.移除學生17098533-B411-0029 考試計劃61
+#  - {username: test38-test,password: wemust@prod,application: 考試,user_s: 17098533-B411-0029,expect: False}
+#發佈計劃后添加的科目（未發佈移除學生），再發佈該科目，該生不收到通知
+#  - {username: test38-test,password: wemust@prod,application: 考試,user_s: 1909853G-C111-0019,expect: False}
+#發佈計劃后添加的科目（未發佈移除學生），再發佈該科目，該生收到通知 1909853D-B011-0327
+  - {username: test38-test,password: wemust@prod,application: 考試,user_s: 1909853D-B011-0327,expect: False}
+
+test_student_del_or_T_style:
+#1.移除學生17098533-B411-0029 考試計劃61
+#  - {username: test38-test,password: wemust@prod,application: 考試,user_s: 1909853N-B411-0015,expect: False}
+  - {username: test38-test,password: wemust@prod,application: 考試,user_s: 1909853V-B411-0059,expect: False}
+#2.設置為T：17098537-B411-0012 考試計劃61
+#  - {username: test38-test,password: wemust@prod,application: 考試,user_s: 17098533-B411-0060,expect: False}

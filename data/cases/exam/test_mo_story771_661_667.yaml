@@ -1,0 +1,25 @@
+test_check_add_plan_succeed:
+#2021-03-08测试排靠前设置为T，不同科目同一学生同一时间排考成功 学生：1709853Y-B011-0035
+#mo
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story667_661_771\exists_excel_S3.xls,expect: 當前計劃 }
+
+
+test_bug29292_2:
+#bug29292-2同科目，存在相同的班别排考编号不同（考试时间不同）导入报错
+#mo
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story667_661_771\exists_excel5.xls,expect: True }
+
+test_add_exam:
+#添加成功
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 0312計劃18,
+      examCode: MSB7,course_1: BFP12013-TEST2,classdata_1: [ "D4-2-TEST"], roomCode: O303,teacher_1: [ "test41-test", ],
+      num: 20,invigilate_one: test41-test,examdate: 2021-11-13,examtime: 15:00 - 17:00}
+
+test_add_examroom:
+  - {username: test38-test,password: wemust@prod,application: 考試,room: B303,seatCount: 2,startSn: 6000,faculty: FI,expect: 保存成功}
+
+test_delete_examroom:
+  - {username: test38-test,password: wemust@prod,application: 考試,room_keys: B303,expect: 0}
+

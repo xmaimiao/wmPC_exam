@@ -1,0 +1,41 @@
+release_for_date:
+  - by: xpath
+    locator: '//*[contains(text(),"${date}")]/../.././../../td[1]//input'
+    action: click
+
+teacher_view_date:
+#點擊輸入框，展開日期插件
+  - by: xpath
+    locator: '//form/div[1]//input[@class="ivu-input ivu-input-default ivu-input-with-suffix"]'
+    action: click
+  - by: xpath
+    locator: '//form/div[1]//div//em[contains(text(),"${date_t}")]'
+    action: click
+# 點擊”確認“按鈕
+  - by: xpath
+    locator: '//form/div[1]//div[@class="ivu-picker-confirm"]/button[3]/span'
+    action: click
+
+student_view_date:
+#點擊輸入框，展開日期插件
+  - by: xpath
+    locator: '//form/div[2]//input[@class="ivu-input ivu-input-default ivu-input-with-suffix"]'
+    action: click
+  - by: xpath
+    locator: '//form/div[2]//div//em[contains(text(),"${date_t}")]'
+    action: click
+# 點擊”確認“按鈕
+  - by: xpath
+    locator: '//form/div[2]//div[@class="ivu-picker-confirm"]/button[3]/span'
+    action: click
+
+release_all:
+  - by: xpath
+    locator: '//*[@class="ivu-table-header"]//input'
+    action: click
+
+click_release:
+  - by: xpath
+    locator: '//button[@class="we f-14 ivu-btn ivu-btn-primary"]/span'
+    action: click
+

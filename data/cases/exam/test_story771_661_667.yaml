@@ -1,0 +1,36 @@
+test_check_upload_exists_plan:
+#dev/uat
+  #2021-03-08测试排靠前设置为S，该学生参与补考
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2009,
+      type: 補考,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story667_661_771\makeup_excel1.xls,expect: True }
+
+
+
+test_check_add_plan_succeed:
+#dev2021-03-08
+  #测试排靠前设置为T，不同科目同一学生同一时间排考成功 学生：1709853Y-B011-0035
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃1,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story667_661_771\exists_excel_S2.xls,expect: 當前計劃 }
+
+test_story667:
+  #测试story667,考試座位號的分配按照班級：(D1,D2...D9,D10,D11,E1,E2) , 學號從小到大順序排
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story667_661_771\exists_excel1.xls,expect: 當前計劃 }
+
+test_bug29292_1:
+#bug29292-1同科目，不同的班别允许排考编号不同，导入成功，且保存成功
+#dev/uat
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story667_661_771\exists_excel2.xls}
+
+test_bug29292_2:
+#dev/uat
+#bug29292-2同科目，存在相同的班别排考编号不同（考试时间不同）导入报错
+  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2009,
+      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story667_661_771\exists_excel3.xls,expect: True }
+
+test_bug29292_3:
+#dev/uat
+#bug29292-3同科目，存在相同的班别排考编号相同（考试时间同）导入成功，且保存成功
+- { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2009,
+    type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story667_661_771\exists_excel4.xls}
