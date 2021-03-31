@@ -51,9 +51,9 @@ test_add_exam_788:
       type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel788_6.xls,
   plan: 計劃,examCode: BL4014-2,course_1: BAFZ05,teacher_1: [ "pyyan", ],classdata_1: [ "D2"],examdate: 2021-03-31,examtime: 15:00 - 17:00,}
 #bug添加科目，校验学生同一时间考试冲突失败
-  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2102,
-      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel788_6.xls,
-  plan: 計劃,examCode: BL4014-2,course_1: BAFZ05,teacher_1: [ "pyyan", ],classdata_1: [ "D2"],examdate: 2021-03-27,examtime: 19:00 - 21:00,}
+#  - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2102,
+#      type: 期中考試,excel_path: D:\PycharmProjects\wmPC_exam\excel\03-09\story786_787_788\exists_excel788_6.xls,
+#  plan: 計劃,examCode: BL4014-2,course_1: BAFZ05,teacher_1: [ "pyyan", ],classdata_1: [ "D2"],examdate: 2021-03-27,examtime: 19:00 - 21:00,}
 
 test_check_difnum_the_same_room:
   - { username: test38-test,password: wemust@prod,application: 考試,plan_name: 計劃,term: 2009,

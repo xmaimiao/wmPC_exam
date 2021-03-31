@@ -70,6 +70,8 @@ test_mo_story786_787_788_dir = os.path.join(base_dir,'data/cases/exam/test_mo_st
 
 test_bug29693_29682_dir = os.path.join(base_dir,'data/cases/exam/test_bug29693_29682.yaml')
 
+test_data_dir = os.path.join(base_dir,'data/cases/exam/test_data.yaml')
+
 
 
 class TestPath:

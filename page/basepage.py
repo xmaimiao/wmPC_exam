@@ -13,6 +13,19 @@ from common.contants import basepage_dir
 from page.handle_black import handlie_blacklist
 
 
+# def _get_working():
+#     '''
+#     读入配置文件,判断是启用调试端口 还是启用docker-grid
+#     '''
+#     with open(basepage_dir, encoding="utf-8") as f:
+#         data = yaml.safe_load(f)
+#         working = data["switch"][data["switch_default"]]
+#         if working != "port":
+#             base_url = data["docker_env"][data["default"]]
+#         else:
+#             base_url = ''
+#         return working,base_url
+
 def _get_working():
     '''
     读入配置文件,判断是启用调试端口 还是启用docker-grid

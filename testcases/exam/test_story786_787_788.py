@@ -204,7 +204,7 @@ class Test_Story786_787_788:
         self.del_exam_plan()
 
     # story787
-    @pytest.mark.skip
+    # @pytest.mark.skip
     @pytest.mark.parametrize("data", get_data("test_T_787_1"))
     def test_T_787_1(self, data):
         '''发布前撤销设置为T的学生'''
@@ -213,7 +213,7 @@ class Test_Story786_787_788:
         self.release_undergraduate_plan_all()
         assert self.stu_of_del_or_T(data["user_s"]) == False
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     @pytest.mark.parametrize("data", get_data("test_T_787_2"))
     def test_T_787_2(self, data):
         '''发布后撤销设置为T的学生'''
@@ -225,6 +225,14 @@ class Test_Story786_787_788:
         # self.del_exam_plan()
 
     # story788
+
+    @pytest.mark.parametrize("data", get_data("test_check_upload_error_788"))
+    def test_data(self, data):
+        '''
+        验证上传已排计划，有错误提示
+        '''
+        self.check_upload_error(data["plan_name"],data["term"],data["type"],data["excel_path"])
+
     @pytest.mark.parametrize("data", get_data("test_check_upload_error_788"))
     def test_check_upload_error_788(self, data):
         '''
@@ -233,13 +241,13 @@ class Test_Story786_787_788:
 
         self.check_upload_error(data["plan_name"],data["term"],data["type"],data["excel_path"])
 
+    #123456
     @pytest.mark.parametrize("data", get_data("test_check_upload_warn_788"))
     def test_check_upload_warn_788(self, data):
         '''
         验证上传已排计划，有警告提示
         '''
         self.check_upload_warn(data["plan_name"],data["term"],data["type"],data["excel_path"])
-
 
     @pytest.mark.parametrize("data", get_data("test_add_exam_788"))
     def test_add_exam_788(self, data):
